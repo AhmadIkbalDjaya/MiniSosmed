@@ -11,15 +11,11 @@
         <div class="col-md-10">
             <div class="list-group bg-white shadow-sm">
                 <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0">
-                    <a href="profile">
-                        <img src="https://github.com/twbs.png" alt="twbs" width="100" height="100" class="rounded-circle flex-shrink-0 mt-1 profileImg">
-                    </a>
+                    <img src="https://github.com/twbs.png" alt="twbs" width="100" height="100" class="rounded-circle flex-shrink-0 mt-1 profileImg">
                     <div class="d-flex gap-1 w-100 justify-content-between mt-4">
                         <div>
-                            <a href="profile" class="text-decoration-none">
-                                <h3 class="">Andi Ikbal Djaya</h6>
-                                <h6>9999999999999999 Pengikut</h6>
-                            </a>
+                            <h3 class="">{{ $user->username }}</h6>
+                            <h6>9999999999999999 Pengikut</h6>
                         </div>
                         <a href="Ikuti">
                             <button type="button" class="btn btn-primary py-0">Ikuti</button>
@@ -39,12 +35,23 @@
                         <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0 px-lg-0 m-0">
                             <div class="d-flex gap-1 w-100 justify-content-between">
                                 <div>
-                                    <p>Nama Lengkap: Ahmad Ikbal Djaya</p>
-                                    <p>Panggilan: Ikbal</p>
-                                    <p>Asal: Pangkep</p>
-                                    <p>Jenis Kelamin: Laki-Laki</p>
-                                    <p>Agama: Islam</p>
-                                    <p>Asal Sekolah: SMAN 11 Pangkep</p>
+                                    <table class="table-borderless">
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>:</td>
+                                            <td>{{ $bio->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Birthday</td>
+                                            <td>:</td>
+                                            <td>{{ $bio->birthday }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Genre</td>
+                                            <td>:</td>
+                                            <td>{{ $bio->genre }}</td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -53,23 +60,23 @@
             </aside>
             <main class="col-md-7 main">
                 <div class="h-100 p-0 rounded-3">
-                    {{-- <h2>Change the background</h2> --}}
+                    @foreach ($posts as $post)
                     <div class="p-3 bg-white rounded-3 mb-5 shadow-sm">
                         <div class="headerPost d-flex justify-content-between">
                             <div class="d-flex gap-3">
-                                <a href="profile" class="">
+                                <a href="/profile/{{ $post->user->username }}" class="">
                                     <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-2">
                                 </a>
                                 <div class="d-flex flex-column">
                                     <a href="" class="text-decoration-none">
-                                        <small><b>Ahmad Ikbal Djaya</b></small>
+                                        <small><b>{{ $post->user->username }}</b></small>
                                     </a>
-                                    <small>31 Mei 2022</small>
+                                    <small>{{ $post->created_at }}</small>
                                 </div>
                             </div>
                         </div>
                         <div class="mainPost mt-3">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab obcaecati deleniti quas, itaque earum corrupti fugit ducimus ullam atque soluta, ipsum illum doloremque quae blanditiis corporis, voluptatibus voluptatem amet deserunt. Alias maiores quae cumque ut labore impedit blanditiis, vero repellat provident natus suscipit dolores tempora porro fugiat laudantium dolorum quisquam necessitatibus accusamus ratione doloribus. Eaque explicabo eius sit mollitia beatae neque suscipit. Error odio pariatur ullam facilis, corrupti doloribus aut soluta cupiditate molestiae quos maiores omnis incidunt, minus esse aperiam optio delectus reiciendis ab? Necessitatibus doloribus, facilis quaerat ratione, reiciendis dignissimos atque accusantium voluptatum qui, perspiciatis iste? Laborum, mollitia eius.</p>
+                            <p>{{ $post->body }}</p>
                         </div>
                         <div class="footerPost mt-3">
                             <hr>
@@ -80,6 +87,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </main>
             

@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
+
+
+class DashboardController extends Controller
+{
+    public function index(){
+        return view('dashboard', [
+            "title" => "Minsos",
+            "posts" => Post::with(['user'])->latest()->get(),
+            "users" => User::all()
+        ]);
+    }
+}

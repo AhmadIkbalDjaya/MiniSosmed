@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+Route::get('/profile/{user:username}', [UserController::class, 'index']);
