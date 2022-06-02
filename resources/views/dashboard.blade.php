@@ -11,13 +11,13 @@
                         <div class="headerPost d-flex justify-content-between">
                             <div class="d-flex gap-3">
                                 <a href="/profile/{{ $post->user->username }}" class="">
-                                    <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-2">
+                                    <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="img-fluid rounded-circle flex-shrink-0 mt-2">
                                 </a>
                                 <div class="d-flex flex-column">
-                                    <a href="/profile/{{ $post->user->username }}" class="text-decoration-none">
+                                    <a href="/profile/{{ $post->user->username }}" class="text-decoration-none text-dark">
                                         <small><b>{{ $post->user->username }}</b></small>
                                     </a>
-                                    <small>{{ $post->updated_at }}</small>
+                                    <small class="text-black-50">{{ $post->updated_at->diffForHumans() }}</small>
                                 </div>
                             </div>
                         </div>
@@ -38,16 +38,16 @@
         </main>
         <aside class="col-md-4 sidebar">
             <div class="h-100 bg-transparent rounded-3">
-                <h6>Mungkin Anda Mengenal</h6>
+                <h6 class="text-black-50">Mungkin Anda Mengenal</h6>
                 <div class="list-group">
                     @foreach ($users as $user)
                         <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0 px-lg-0 m-0">
                             <a href="/profile/{{ $user->username }}">
-                                <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1">
+                                <img src="https://source.unsplash.com/100x100" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1 img-fluid">
                             </a>
                             <div class="d-flex gap-1 w-100 justify-content-between mt-1">
                                 <div>
-                                    <a href="/profile/{{ $user->username }}" class="text-decoration-none">
+                                    <a href="/profile/{{ $user->username }}" class="text-decoration-none text-dark">
                                         <h6 class="mb-0">{{ $user->username }}</h6>
                                     </a>
                                 </div>

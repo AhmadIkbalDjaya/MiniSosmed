@@ -1,17 +1,29 @@
-<link rel="stylesheet" href="css/profile.css">
 @extends('layouts.main')
 
 @section('main')
-<section>
-    
-    <div class="pt-3 row justify-content-center headerProfile">
-        <div class="coverImgCon col-md-10">
-            <img src="img/cover/sampulMark.jpg" alt="Sampul Mark" class="coverImg rounded-top">
+<section class="container">
+    <div class="row justify-content-center headerProfile mt-0 ">
+        <div class="coverImgCon col-md-10 px-0">
+            <img src="https://source.unsplash.com/1200x400" alt="Sampul Mark" class="coverImg rounded-top img-fluid">
         </div>
-        <div class="col-md-10">
-            <div class="list-group bg-white shadow-sm">
+        <div class="col-md-10 border-b shadow-sm bg-white rounded-bottom text-center">
+            <div class="row px-0 py-2">
+                <div class="col-md-2">
+                    <img src="https://source.unsplash.com/100x100" alt="twbs" class="rounded-circle flex-shrink-0 mt-1 profileImg img-fluid">
+                </div>
+                <div class="col-md-8">
+                    <h3 class="">{{ $user->username }}</h6>
+                    <h6>999999 Pengikut</h6>
+                </div>
+                <div class="col-md-2">
+                    <a href="Ikuti">
+                        <button type="button" class="btn btn-primary py-0">Ikuti</button>
+                    </a>
+                </div>
+            </div>
+            {{-- <div class="list-group bg-white shadow-sm">
                 <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0">
-                    <img src="https://github.com/twbs.png" alt="twbs" width="100" height="100" class="rounded-circle flex-shrink-0 mt-1 profileImg">
+                    <img src="https://source.unsplash.com/?programming" alt="twbs" class="rounded-circle flex-shrink-0 mt-1 profileImg ">
                     <div class="d-flex gap-1 w-100 justify-content-between mt-4">
                         <div>
                             <h3 class="">{{ $user->username }}</h6>
@@ -22,13 +34,13 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
     <main class="mt-5 row justify-content-center">
-        <div class="col-md-10 row align-items-md-stretch justify-content-md-center">
-            <aside class="col-md-5 sidebar mb-5">
+        <div class="col-md-10 row align-items-md-stretch justify-content-md-center px-0">
+            <aside class="col-lg-5 sidebar mb-5">
                 <div class="bg-white p-3 shadow-sm rounded-3">
                     <h4>Biodata</h4>
                     <div class="list-group">
@@ -58,20 +70,20 @@
                     </div>
                 </div>
             </aside>
-            <main class="col-md-7 main">
+            <main class="col-lg-7 main">
                 <div class="h-100 p-0 rounded-3">
                     @foreach ($posts as $post)
                     <div class="p-3 bg-white rounded-3 mb-5 shadow-sm">
                         <div class="headerPost d-flex justify-content-between">
                             <div class="d-flex gap-3">
                                 <a href="/profile/{{ $post->user->username }}" class="">
-                                    <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-2">
+                                    <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-2 img-fluid">
                                 </a>
                                 <div class="d-flex flex-column">
-                                    <a href="" class="text-decoration-none">
+                                    <a href="" class="text-decoration-none text-dark">
                                         <small><b>{{ $post->user->username }}</b></small>
                                     </a>
-                                    <small>{{ $post->created_at }}</small>
+                                    <small class="text-black-50">{{ $post->created_at->diffForHumans() }}</small>
                                 </div>
                             </div>
                         </div>
