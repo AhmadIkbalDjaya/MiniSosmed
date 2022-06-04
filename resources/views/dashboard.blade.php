@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="css/dashboard.css">
 @extends('layouts.main')
-
 @section('main')
+<link rel="stylesheet" href="css/dashboard.css">
 <main class="mt-5 container-lg">
     <div class="row align-items-md-stretch justify-content-md-center">
         <main class="col-md-8 main">

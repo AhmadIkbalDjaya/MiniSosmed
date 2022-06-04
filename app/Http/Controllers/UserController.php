@@ -16,4 +16,12 @@ class UserController extends Controller
             "bio" => $user->biodata
         ]);
     }
+
+    public function search(){
+        return view('search', [
+            "title" => "Pencarian",
+            "active" => "search",
+            "users" => User::search(request('search'))->get()
+        ]);
+    }
 }

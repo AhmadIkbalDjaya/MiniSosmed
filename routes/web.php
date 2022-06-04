@@ -21,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/profile/{user:username}', [UserController::class, 'index']);
+
+Route::get('/search', [UserController::class, 'search']);
