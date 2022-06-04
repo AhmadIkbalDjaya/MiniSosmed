@@ -14,7 +14,7 @@
                                 </a>
                                 <div class="d-flex flex-column">
                                     <a href="/profile/{{ $post->user->username }}" class="text-decoration-none text-dark">
-                                        <small><b>{{ $post->user->username }}</b></small>
+                                        <small><b>{{ $post->user->name }}</b></small>
                                     </a>
                                     <small class="text-black-50">{{ $post->updated_at->diffForHumans() }}</small>
                                 </div>
@@ -26,8 +26,8 @@
                         <div class="footerPost mt-3">
                             <hr>
                             <div class="lcs d-flex justify-content-between px-4">
-                                <p>Like</p>
-                                <p>Comment</p>
+                                <p><i class="bi bi-hand-thumbs-up"></i> Like</p>
+                                <p><i class="bi bi-chat-square"></i> Comment</p>
                                 <p>Share</p>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <div class="d-flex gap-1 w-100 justify-content-between mt-1">
                                 <div>
                                     <a href="/profile/{{ $user->username }}" class="text-decoration-none text-dark">
-                                        <h6 class="mb-0">{{ $user->username }}</h6>
+                                        <h6 class="mb-0">{{ $user->name}}</h6>
                                     </a>
                                 </div>
                                 <a href="Ikuti">

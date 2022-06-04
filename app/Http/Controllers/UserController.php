@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index(User $user){
         return view('profile', [
-            "title" => "Profile $user->username",
+            "title" => "Profile $user->name",
             "active" => "profile",
             "user" => $user,
             "posts" => $user->post,

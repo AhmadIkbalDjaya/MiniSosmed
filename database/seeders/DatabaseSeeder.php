@@ -20,25 +20,25 @@ class DatabaseSeeder extends Seeder
         Post::factory(10)->create();
 
         User::create([
-            'username' => 'Ahmad Ikbal Djaya',
+            'name' => 'Ahmad Ikbal Djaya',
+            'username' => 'ahmad-ikbal-djaya',
             'email' => 'ikbaldjaya@gmail.com',
             'password' => bcrypt('123')
         ]);
         User::create([
-            'username' => 'Andi Ahmad Zulkifli Basma',
+            'name' => 'Andi Ahmad Zulkifli Basma',
+            'username' => 'andi-ahmad-zullkifli-basma',
             'email' => 'andiAhmad@gmail.com',
             'password' => bcrypt('123')
         ]);
 
         Biodata::create([
             'user_id' => 1,
-            'name' => 'Ahmad Ikbal Djaya',
             'birthday' => '2002-08-18',
             'genre' => 'Laki-laki'
         ]);
         Biodata::create([
             'user_id' => 2,
-            'name' => 'Andi Ahmad Zulkili Basma',
             'birthday' => '2002-07-07',
             'genre' => 'Laki-laki'
         ]);

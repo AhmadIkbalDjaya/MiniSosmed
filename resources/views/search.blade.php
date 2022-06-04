@@ -11,7 +11,9 @@
                             <img src="https://source.unsplash.com/60x60" alt="" class="rounded-circle img-fluid" width="60" height="60">
                         </div>
                         <div class="mt-1">
-                            <h5 class="mb-0">{{ $user->username }}</h5>
+                            <a href="/profile/{{ $user->username }}" class="text-decoration-none text-dark">
+                                <h5 class="mb-0">{{ $user->name }}</h5>
+                            </a>
                             <small>999 Pengikut</small>
                         </div>
                     </div>

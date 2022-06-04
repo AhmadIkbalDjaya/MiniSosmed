@@ -12,7 +12,7 @@
                     <img src="https://source.unsplash.com/100x100" alt="twbs" class="rounded-circle flex-shrink-0 mt-1 profileImg img-fluid">
                 </div>
                 <div class="col-md-8">
-                    <h3 class="">{{ $user->username }}</h6>
+                    <h3 class="">{{ $user->name }}</h6>
                     <h6>999999 Pengikut</h6>
                 </div>
                 <div class="col-md-2">
@@ -21,20 +21,6 @@
                     </a>
                 </div>
             </div>
-            {{-- <div class="list-group bg-white shadow-sm">
-                <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0">
-                    <img src="https://source.unsplash.com/?programming" alt="twbs" class="rounded-circle flex-shrink-0 mt-1 profileImg ">
-                    <div class="d-flex gap-1 w-100 justify-content-between mt-4">
-                        <div>
-                            <h3 class="">{{ $user->username }}</h6>
-                            <h6>9999999999999999 Pengikut</h6>
-                        </div>
-                        <a href="Ikuti">
-                            <button type="button" class="btn btn-primary py-0">Ikuti</button>
-                        </a>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 
@@ -51,7 +37,7 @@
                                         <tr>
                                             <td>Name</td>
                                             <td>:</td>
-                                            <td>{{ $bio->name }}</td>
+                                            <td>{{ $user->name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Birthday</td>
@@ -81,7 +67,7 @@
                                 </a>
                                 <div class="d-flex flex-column">
                                     <a href="" class="text-decoration-none text-dark">
-                                        <small><b>{{ $post->user->username }}</b></small>
+                                        <small><b>{{ $post->user->name }}</b></small>
                                     </a>
                                     <small class="text-black-50">{{ $post->created_at->diffForHumans() }}</small>
                                 </div>
@@ -93,8 +79,8 @@
                         <div class="footerPost mt-3">
                             <hr>
                             <div class="lcs d-flex justify-content-between px-4">
-                                <p>Like</p>
-                                <p>Comment</p>
+                                <p><i class="bi bi-hand-thumbs-up"></i> Like</p>
+                                <p><i class="bi bi-chat-square"></i> Comment</p>
                                 <p>Share</p>
                             </div>
                         </div>

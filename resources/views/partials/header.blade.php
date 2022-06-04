@@ -10,7 +10,10 @@
                     <a class="nav-link {{ ($active === "dashboard") ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ ($active === "profile") ? 'active' : '' }}" href="/profile/Ahmad Ikbal Djaya">Profile</a>
+                    <a class="nav-link {{ ($active === "profile") ? 'active' : '' }}" href="/profile/ahmad-ikbal-djaya">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ ($active === "login") ? 'active' : '' }}" href="/login">Login</a>
                 </li>
             </ul>
             <form class="d-flex" action="/search">
