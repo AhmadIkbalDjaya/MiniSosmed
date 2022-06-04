@@ -3,6 +3,12 @@
 @section('main')
 <div class="row justify-content-center mt-5">
     <div class="col-md-4">
+        @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <main class="form-signin">
             <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
             <form>

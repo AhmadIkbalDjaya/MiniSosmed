@@ -29,3 +29,5 @@ Route::get('/search', [UserController::class, 'search']);
 Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/register', [RegisterController::class, 'index']);
+
+Route::post('/register', [RegisterController::class, 'store']);

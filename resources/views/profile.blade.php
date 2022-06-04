@@ -42,12 +42,24 @@
                                         <tr>
                                             <td>Birthday</td>
                                             <td>:</td>
-                                            <td>{{ $bio->birthday }}</td>
+                                            <td>
+                                                @if (!empty($bio->birthday))
+                                                    {{ $bio->birthday }}
+                                                @else
+                                                    Data Belum Ditambahkan
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Genre</td>
                                             <td>:</td>
-                                            <td>{{ $bio->genre }}</td>
+                                            <td>
+                                                @if (!empty($bio->genre))
+                                                    {{ $bio->genre }}
+                                                @else
+                                                    Data Belum Ditambahkan
+                                                @endif
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -58,34 +70,39 @@
             </aside>
             <main class="col-lg-7 main">
                 <div class="h-100 p-0 rounded-3">
-                    @foreach ($posts as $post)
-                    <div class="p-3 bg-white rounded-3 mb-5 shadow-sm">
-                        <div class="headerPost d-flex justify-content-between">
-                            <div class="d-flex gap-3">
-                                <a href="/profile/{{ $post->user->username }}" class="">
-                                    <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-2 img-fluid">
-                                </a>
-                                <div class="d-flex flex-column">
-                                    <a href="" class="text-decoration-none text-dark">
-                                        <small><b>{{ $post->user->name }}</b></small>
+                    @if ($posts->count())
+                        
+                        @foreach ($posts as $post)
+                        <div class="p-3 bg-white rounded-3 mb-5 shadow-sm">
+                            <div class="headerPost d-flex justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <a href="/profile/{{ $post->user->username }}" class="">
+                                        <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-2 img-fluid">
                                     </a>
-                                    <small class="text-black-50">{{ $post->created_at->diffForHumans() }}</small>
+                                    <div class="d-flex flex-column">
+                                        <a href="" class="text-decoration-none text-dark">
+                                            <small><b>{{ $post->user->name }}</b></small>
+                                        </a>
+                                        <small class="text-black-50">{{ $post->created_at->diffForHumans() }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mainPost mt-3">
+                                <p>{{ $post->body }}</p>
+                            </div>
+                            <div class="footerPost mt-3">
+                                <hr>
+                                <div class="lcs d-flex justify-content-between px-4">
+                                    <p><i class="bi bi-hand-thumbs-up"></i> Like</p>
+                                    <p><i class="bi bi-chat-square"></i> Comment</p>
+                                    <p>Share</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="mainPost mt-3">
-                            <p>{{ $post->body }}</p>
-                        </div>
-                        <div class="footerPost mt-3">
-                            <hr>
-                            <div class="lcs d-flex justify-content-between px-4">
-                                <p><i class="bi bi-hand-thumbs-up"></i> Like</p>
-                                <p><i class="bi bi-chat-square"></i> Comment</p>
-                                <p>Share</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <h4 class="text-center">No Post Found</h4>
+                    @endif
                 </div>
             </main>
             
