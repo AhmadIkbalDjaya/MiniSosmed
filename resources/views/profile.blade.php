@@ -1,10 +1,12 @@
 @extends('layouts.main')
-
+@section('header')
+    @include('partials.header')
+@endsection
 @section('main')
 <section class="container">
     <div class="row justify-content-center headerProfile mt-0 ">
         <div class="coverImgCon col-md-10 px-0">
-            <img src="https://source.unsplash.com/1200x400" alt="Sampul Mark" class="coverImg rounded-top img-fluid">
+            <img src="https://source.unsplash.com/1200x400" alt="Sampul Mark" class="coverImg rounded-top img-fluid mt-5 pt-2">
         </div>
         <div class="col-md-10 border-b shadow-sm bg-white rounded-bottom text-center">
             <div class="row px-0 py-2">

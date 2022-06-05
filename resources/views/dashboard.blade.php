@@ -1,7 +1,10 @@
 @extends('layouts.main')
+@section('header')
+    @include('partials.header')
+@endsection
 @section('main')
 <link rel="stylesheet" href="css/dashboard.css">
-<main class="mt-5 container-lg">
+<main class="container-lg mt-5 pt-5">
     <div class="row align-items-md-stretch justify-content-md-center">
         <main class="col-md-8 main">
             <div class="h-100 p-0 rounded-3">

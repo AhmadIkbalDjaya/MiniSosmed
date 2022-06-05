@@ -1,7 +1,9 @@
 @extends('layouts.main')
-
+@section('header')
+    @include('partials.header')
+@endsection
 @section('main')
-<main class="mt-5 container-lg">
+<main class="container-lg mt-5 pt-5">
     <div class="row align-items-md-stretch justify-content-center">
         @if ($users->count())
             @foreach ($users as $user)
