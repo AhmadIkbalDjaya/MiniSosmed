@@ -11,23 +11,17 @@
             </form>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ ($active === "dashboard") ? 'active' : '' }}" href="/"><i class="bi bi-house-fill"></i> Home</a>
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home <i class="bi bi-house-fill"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ ($active === "profile") ? 'active' : '' }}" href="/profile/{{ auth()->user()->username }}"><i class="bi bi-person-fill"></i> Profile</a>
+                    <a class="nav-link {{ Request::is('profile/' . auth()->user()->username) ? 'active' : '' }}" href="/profile/{{ auth()->user()->username }}">Profile <i class="bi bi-person-fill"></i></a>
                 </li>
-            @auth
                 <li class="nav-item">
                     <form action="/logout" method="post">
                         @csrf
-                        <button type="submit" class="nav-link bg-transparent border-0"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                        <button type="submit" class="nav-link bg-transparent border-0">Logout <i class="bi bi-box-arrow-right"></i></button>
                     </form>
                 </li>
-            @else
-                <li class="nav-item">
-                    <a href="/login" class="nav-link {{ ($active === "login") ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-                </li>
-            @endauth
             </ul>
             
         </div>
