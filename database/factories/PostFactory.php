@@ -18,9 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => mt_rand(1, 2),
-            'body' => $this->faker->paragraph(),
-            'slug' => $this->faker->slug(),
-            
+            'body' => $this->faker->paragraph()
         ];
     }
 }

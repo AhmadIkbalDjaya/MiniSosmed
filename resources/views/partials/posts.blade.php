@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="mainPost mt-3">
-        <p>{{ $post->body }}</p>
+        <p>{!! $post->body !!}</p>
     </div>
     <div class="footerPost mt-3">
         <hr>
