@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -11,7 +12,8 @@ class UserController extends Controller
         return view('profile', [
             "title" => "Profile $user->name",
             "user" => $user,
-            "posts" => $user->post,
+            // "posts" => $user->post,
+            "posts" => Post::where('user_id', $user->id)->latest()->get(),
             "bio" => $user->biodata
         ]);
     }

@@ -95,12 +95,12 @@
         </div>
     </main>
 </section>
-{{-- modal upload post --}}
-<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- modal edit post --}}
+{{-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Buat Postingan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Postingan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body row">
@@ -115,17 +115,20 @@
                     </div>
                 </div>
                 <div class="col-12 mt-3">
-                    <form>
-                        <input id="body" type="hidden" name="body">
-                        <trix-editor input="body"></trix-editor>
-                    </form>
+                    <form action="" method="POST">
+                        @csrf
+                        <input id="editBody" type="hidden" name="body" required value="{{ $post->id }}">
+                        <trix-editor input="editBody"></trix-editor>
+                    
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Posting</button>
+                <button type="submit" class="btn btn-primary">Ubah Postingan</button>
+            </form>
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+@include('partials.postModal')
 @endsection
