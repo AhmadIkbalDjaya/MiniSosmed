@@ -36,11 +36,11 @@
     <div class="px-3 mainPost mt-3">
         <p>{!! $post->body !!}</p>
     </div>
-    <div class="imagePost d-flex justify-content-center">
-        @if ($post->image)
-                <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid" alt="{{ $post->user->name }} Post Image">
-        @endif
-    </div>
+    @if ($post->image)
+        <div class="imagePost d-flex justify-content-center">
+                <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid w-100" alt="{{ $post->user->name }} Post Image">
+        </div>
+    @endif
     <div class="footerPost mt-3">
         <hr>
         <div class="lcs d-flex justify-content-between px-4">

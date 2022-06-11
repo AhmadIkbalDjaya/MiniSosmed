@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="css/dashboard.css">
 <main class="container-lg mt-5 pt-5">
     <div class="row align-items-md-stretch justify-content-md-center">
-        <main class="col-md-8 main">
+        <main class="col-lg-7 main">
             <div class="h-100 p-0 rounded-3">
                 <div class="p-3 bg-white rounded-3 mb-3 shadow-sm d-flex justify-content-between gap-2">
                     <a href="/profile/{{ auth()->user()->username }}">
@@ -22,7 +22,7 @@
                 @endforeach
             </div>
         </main>
-        <aside class="col-md-4 sidebar">
+        <aside class="col-md-4 sidebar>
             <div class="h-100 bg-transparent rounded-3">
                 <h6 class="text-black-50">Mungkin Anda Mengenal</h6>
                 <div class="list-group">
