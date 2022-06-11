@@ -18,11 +18,23 @@
                     </div>
                 </div>
                 <div class="col-12 mt-3">
-                    <form action="/post" method="POST">
+                    <form action="/post" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @error('body')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input id="body" type="hidden" name="body" required>
                         <trix-editor input="body"></trix-editor>
-                    
+                        <div class="mb-3">
+                            <label for="postImage" class="form-label"><br><b>Upload Gambar</b></label>
+                            <img class="post-img-preview img-fluid mb-3">
+                            <input class="form-control form-control-sm @error('image') is-invalid @enderror" type="file" id="postImage" name="image" onchange="previewPostImage()">
+                            @error('image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                 </div>
             </div>
             <div class="modal-footer">

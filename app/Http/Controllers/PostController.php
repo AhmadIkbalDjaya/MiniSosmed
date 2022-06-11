@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -36,8 +37,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedPost = $request->validate([
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'image|file|max:1024',
         ]);
+
+        if($request->file('image')){
+            $validatedPost['image'] = $request->file('image')->store('post-images');
+        }
+
         $validatedPost['user_id'] = auth()->user()->id;
     
         Post::create($validatedPost);
@@ -77,8 +84,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validatedPost = $request->validate([
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'image|file|max:1024',
         ]);
+
+        if($request->file('image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+            $validatedPost['image'] = $request->file('image')->store('post-images');
+        }
     
         Post::where('id', $post->id)->update($validatedPost);
     
@@ -93,6 +108,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if($post->image){
+            Storage::delete($post->image);
+        }
         Post::destroy($post->id);
 
         return back();
