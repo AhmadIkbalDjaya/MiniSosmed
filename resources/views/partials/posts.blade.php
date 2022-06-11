@@ -2,7 +2,7 @@
     <div class="px-3 pt-3 headerPost d-flex justify-content-between">
         <div class="d-flex gap-3">
             <a href="/profile/{{ $post->user->username }}" class="">
-                <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="img-fluid rounded-circle flex-shrink-0 mt-2">
+                <img src="https://source.unsplash.com/32x32" alt="twbs" width="35" height="35" class="img-fluid rounded-circle flex-shrink-0 mt-2">
             </a>
             <div class="d-flex flex-column">
                 <a href="/profile/{{ $post->user->username }}" class="text-decoration-none text-dark">
@@ -41,12 +41,38 @@
                 <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid w-100" alt="{{ $post->user->name }} Post Image">
         </div>
     @endif
-    <div class="footerPost mt-3">
-        <hr>
+    <div class="footerPost mt-3 border-top py-2">
         <div class="lcs d-flex justify-content-between px-4">
-            <p><i class="bi bi-hand-thumbs-up"></i> Like</p>
-            <p><i class="bi bi-chat-square"></i> Comment</p>
-            <p>Share</p>
+            <button class="bg-transparent border-0 p-0" type="button">
+                <i class="bi bi-hand-thumbs-up"></i> Like
+            </button>
+            <button class="bg-transparent border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#commentPost{{ $post->id }}" aria-expanded="false" aria-controls="commentPost{{ $post->id }}">
+                <i class="bi bi-chat-square"></i> Comment
+            </button>
+            <button class="bg-transparent border-0 p-0" type="button">
+                <i class="bi bi-arrow-return-right"></i> Share
+            </button>
+        </div>
+    </div>
+    <div class="collapse commentPost p-3 border-top" id="commentPost{{ $post->id }}">
+        <div class="createComment">
+            <form class="d-flex justify-content-between gap-2">
+                <a href="/profile/{{ auth()->user()->username }}" class="">
+                    <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                </a>
+                <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." aria-label=".form-control-sm example">
+            </form>
+        </div>
+        <div class="comments d-flex justify-between gap-2 mt-2">
+            <a href="" class="">
+                <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            </a>
+            <small class="bg-light p-1 rounded-3">
+                <a href="" class="text-dark text-decoration-none "><b>Basma</b></a>
+                <div>
+                    Ini adalah isi komentar Ini adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentar
+                </div> 
+            </small>
         </div>
     </div>
 </div>

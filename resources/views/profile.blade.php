@@ -75,7 +75,7 @@
                     @if ($user->username == auth()->user()->username)
                         <div class="p-3 bg-white rounded-3 mb-3 shadow-sm d-flex justify-content-between gap-2">
                             <a href="/profile/{{ auth()->user()->username }}">
-                                <img src="https://source.unsplash.com/100x100" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1">
+                                <img src="https://source.unsplash.com/100x100" alt="twbs" width="35" height="35" class="rounded-circle flex-shrink-0 mt-1">
                             </a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-light w-100 fs-6 text-start rounded-pill text-black-50" data-bs-toggle="modal" data-bs-target="#postModal">
