@@ -32,6 +32,9 @@
                 margin-left: 0 !important;
             }
         }
+        .bg-light{
+            background-color: #F0F2F5 !important;
+        }
     </style>
     
     <title>{{ $title }}</title>

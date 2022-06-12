@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,8 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory(10)->create();
-
         User::create([
             'name' => 'Ahmad Ikbal Djaya',
             'username' => 'ahmad-ikbal-djaya',
@@ -42,6 +41,10 @@ class DatabaseSeeder extends Seeder
             'birthday' => '2002-07-07',
             'genre' => 'Laki-laki'
         ]);
+
+        Post::factory(10)->create();
+        Comment::factory(10)->create();
+
 
     }
 }

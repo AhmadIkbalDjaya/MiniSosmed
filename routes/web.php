@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,3 +35,4 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Route::post('/createPost', [PostController::class, 'storePost'])->middleware('auth');
 Route::resource('/post', PostController::class)->middleware('auth');
+Route::resource('/comment', CommentController::class)->middleware('auth');

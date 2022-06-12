@@ -49,32 +49,13 @@
             <button class="bg-transparent border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#commentPost{{ $post->id }}" aria-expanded="false" aria-controls="commentPost{{ $post->id }}">
                 <i class="bi bi-chat-square"></i> Comment
             </button>
-            <button class="bg-transparent border-0 p-0" type="button">
+            <button class="bg-transparent border-0 p-0" type="button" title="Belum Tersedia">
                 <i class="bi bi-arrow-return-right"></i> Share
             </button>
         </div>
     </div>
-    <div class="collapse commentPost p-3 border-top" id="commentPost{{ $post->id }}">
-        <div class="createComment">
-            <form class="d-flex justify-content-between gap-2">
-                <a href="/profile/{{ auth()->user()->username }}" class="">
-                    <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                </a>
-                <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." aria-label=".form-control-sm example">
-            </form>
-        </div>
-        <div class="comments d-flex justify-between gap-2 mt-2">
-            <a href="" class="">
-                <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-            </a>
-            <small class="bg-light p-1 rounded-3">
-                <a href="" class="text-dark text-decoration-none "><b>Basma</b></a>
-                <div>
-                    Ini adalah isi komentar Ini adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentarIni adalah isi komentar
-                </div> 
-            </small>
-        </div>
-    </div>
+    {{-- Comment --}}
+    @include('partials.comment')
 </div>
 {{-- modal edit post --}}
 <div class="modal fade" id="editModal{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
