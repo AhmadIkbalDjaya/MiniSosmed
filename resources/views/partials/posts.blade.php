@@ -41,16 +41,19 @@
                 <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid w-100" alt="{{ $post->user->name }} Post Image">
         </div>
     @endif
-    <div class="footerPost mt-3 border-top py-2">
+    <div class="footerPost mt-0 border-top py-1">
         <div class="lcs d-flex justify-content-between px-4">
-            <button class="bg-transparent border-0 p-0" type="button">
-                <i class="bi bi-hand-thumbs-up"></i> Like
-            </button>
+            <form action="/like/{{ $post->id }}" method="post">
+                @csrf
+                <button class="bg-transparent border-0 p-0" type="submit">
+                    <i class="bi bi-hand-thumbs-up"></i> {{ $post->like->count() }}  Like
+                </button>
+            </form>
             <button class="bg-transparent border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#commentPost{{ $post->id }}" aria-expanded="false" aria-controls="commentPost{{ $post->id }}">
-                <i class="bi bi-chat-square"></i> Comment
+                <i class="bi bi-chat-square"></i> {{ $post->comment->count() }} Comment
             </button>
             <button class="bg-transparent border-0 p-0" type="button" title="Belum Tersedia">
-                <i class="bi bi-arrow-return-right"></i> Share
+                <i class="bi bi-arrow-return-right"></i> 0 Share
             </button>
         </div>
     </div>
