@@ -63,7 +63,23 @@
                                                 @endif
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>Address</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if (!empty($bio->address))
+                                                    {{ $bio->address }}
+                                                @else
+                                                    Data Belum Ditambahkan
+                                                @endif
+                                            </td>
+                                        </tr>
                                     </table>
+                                    @if ($user->username == auth()->user()->username)
+                                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#bioModal">
+                                        Edit Biodata
+                                    </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -95,12 +111,12 @@
         </div>
     </main>
 </section>
-{{-- modal edit post --}}
-{{-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- Biodata Modal --}}
+<div class="modal fade" id="bioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Postingan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Biodata</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body row">
@@ -115,20 +131,37 @@
                     </div>
                 </div>
                 <div class="col-12 mt-3">
-                    <form action="" method="POST">
+                    <form action="/profile/bio" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input id="editBody" type="hidden" name="body" required value="{{ $post->id }}">
-                        <trix-editor input="editBody"></trix-editor>
-                    
+                        <div class="mb-3">
+                            <label for="birthday" class="form-label">Birthday</label>
+                            <input type="date" name="birthday" class="form-control" id="birthday" value="{{ auth()->user()->biodata->birthday }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="genre" class="form-label">Jenis Kelamin</label>
+                            <select class="form-select" name="genre">
+                                @if (auth()->user()->biodata->genre == 'Laki-Laki')
+                                    <option value="Laki-Laki" selected>Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan<option>
+                                @else
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan" selected>Perempuan<option>
+                                @endif
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" name="address" class="form-control" id="address" value="{{ auth()->user()->biodata->address }}">
+                        </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Ubah Postingan</button>
+                <button type="submit" class="btn btn-primary">Posting</button>
             </form>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 @include('partials.postModal')
 @endsection

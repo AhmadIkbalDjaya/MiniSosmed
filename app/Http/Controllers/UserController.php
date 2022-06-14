@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Post;
+use App\Models\Biodata;
+use Illuminate\Auth\Events\Validated;
 
 class UserController extends Controller
 {
@@ -23,5 +24,15 @@ class UserController extends Controller
             "title" => "Pencarian",
             "users" => User::search(request('search'))->get()
         ]);
+    }
+
+    public function updateBio(Request $request){
+        $validateBio = $request->validate([
+            'birthday' => '',
+            'genre' => '',
+            'address' => ''
+        ]);
+        Biodata::where('id', auth()->user()->biodata->id)->update($validateBio);
+        return back();
     }
 }

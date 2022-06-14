@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('biodatas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->date('birthday');
-            $table->enum('genre', ['Laki-Laki', 'Perempuan']);
+            $table->enum('genre', ['Laki-Laki', 'Perempuan'])->nullable();
+            $table->date('birthday')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

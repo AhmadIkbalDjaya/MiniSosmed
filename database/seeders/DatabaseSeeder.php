@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         Biodata::create([
             'user_id' => 2,
             'birthday' => '2002-07-07',
-            'genre' => 'Laki-laki'
+            'genre' => 'Perempuan'
         ]);
 
         Post::factory(10)->create();
