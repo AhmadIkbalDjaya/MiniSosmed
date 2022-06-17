@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,3 +40,5 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::resource('/post', PostController::class)->middleware('auth');
 Route::resource('/comment', CommentController::class)->middleware('auth');
 Route::post('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
+
+Route::post('/follow/{user:username}', [FollowController::class, 'store'])->middleware('auth');

@@ -15,12 +15,30 @@
                 </div>
                 <div class="col-md-8">
                     <h3 class="">{{ $user->name }}</h6>
-                    <h6>999999 Pengikut</h6>
+                    <h6 class="d-flex justify-content-around mx-5">
+                        <span class="border py-1 px-2 rounded-3">
+                            {{ $user->followers->count() }} Pengikut
+                        </span>
+                        <span class="border py-1 px-2 rounded-3">
+                            {{ $user->follows->count() }} Diikuti
+                        </span>
+                    </h6>
                 </div>
                 <div class="col-md-2">
-                    <a href="Ikuti">
-                        <button type="button" class="btn btn-primary py-0">Ikuti</button>
-                    </a>
+                    @if (Auth::user()->isNot($user))
+                        <form action="/follow/{{ $user->username }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-primary py-0">
+                                @if (Auth::user()->follows()->where('following_user_id', $user->id)->first())
+                                    Unfollow
+                                @else
+                                    Follow
+                                @endif
+                            </button>
+                        </form>
+                    {{-- @else
+                        <button class="btn btn-primary">Edit Profile</button> --}}
+                    @endif
                 </div>
             </div>
         </div>

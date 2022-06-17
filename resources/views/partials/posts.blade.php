@@ -38,7 +38,7 @@
     </div>
     @if ($post->image)
         <div class="imagePost d-flex justify-content-center">
-                <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid w-100" alt="{{ $post->user->name }} Post Image">
+                <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid w-100 border-top" alt="{{ $post->user->name }} Post Image">
         </div>
     @endif
     <div class="footerPost mt-0 border-top py-1">
