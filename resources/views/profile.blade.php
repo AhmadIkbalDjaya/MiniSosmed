@@ -34,8 +34,8 @@
                     <div class="list-group">
                         <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0 px-lg-0 m-0">
                             <div class="d-flex gap-1 w-100 justify-content-between">
-                                <div>
-                                    <table class="table-borderless">
+                                <div class="w-100">
+                                    <table class="table-borderless table">
                                         <tr>
                                             <td>Name</td>
                                             <td>:</td>
@@ -89,20 +89,28 @@
                     <div class="row">
                         <div class="col-12">
                             <h5 class="card-title">Pengikut</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">123 Pengikut</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $user->followers->count() }} Pengikut</h6>
                         </div>
                         <div class="col-12">
                             <div class="row gap-y">
-                                @for ($i = 0; $i < 6; $i++)
-                                <div class="col-4 mb-2">
-                                    <div class="card border-0">
-                                        <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
-                                        <div class="card-body p-0">
-                                            <p class="fs-6 mb-0 fw-bolder">Mark Zuckerberg</p>
+                                @if ($user->followers->count())
+                                    @foreach ($user->followers()->limit(6)->get() as $f)
+                                    <div class="col-4 mb-2">
+                                        <div class="card border-0">
+                                            <a href="/profile/{{ $f->username }}">
+                                                <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
+                                            </a>
+                                            <div class="card-body p-0">
+                                                <a href="/profile/{{ $f->username }}" class="text-dark text-decoration-none">
+                                                    <p class="fs-6 mb-0 fw-bolder">{{ $f->name }}</p>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                @endfor
+                                    @endforeach
+                                @else
+                                    <h6 class="text-center text-black-50">Tidak Mempunyai Pengikut</h6>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -111,20 +119,28 @@
                     <div class="row">
                         <div class="col-12">
                             <h5 class="card-title">Mengikuti</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">123 Mengikuti</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $user->follows->count() }} Diikuti</h6>
                         </div>
                         <div class="col-12">
                             <div class="row gap-y">
-                                @for ($i = 0; $i < 6; $i++)
-                                <div class="col-4 mb-2">
-                                    <div class="card border-0">
-                                        <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
-                                        <div class="card-body p-0">
-                                            <p class="fs-6 mb-0 fw-bolder">Mark Zuckerberg</p>
+                                @if ($user->follows->count())
+                                    @foreach ($user->follows()->limit(6)->get() as $f)
+                                    <div class="col-4 mb-2">
+                                        <div class="card border-0">
+                                            <a href="/profile/{{ $f->username }}">
+                                                <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
+                                            </a>
+                                            <div class="card-body p-0">
+                                                <a href="/profile/{{ $f->username }}" class="text-dark text-decoration-none">
+                                                    <p class="fs-6 mb-0 fw-bolder">{{ $f->name }}</p>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                @endfor
+                                    @endforeach
+                                @else
+                                    <h6 class="text-center text-black-50">Tidak Mengikuti Siapapun</h6>
+                                @endif
                             </div>
                         </div>
                     </div>
