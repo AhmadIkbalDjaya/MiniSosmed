@@ -2,7 +2,7 @@
     <div class="px-3 pt-3 headerPost d-flex justify-content-between">
         <div class="d-flex gap-3">
             <a href="/profile/{{ $post->user->username }}" class="">
-                <img src="https://source.unsplash.com/32x32" alt="twbs" width="35" height="35" class="img-fluid rounded-circle flex-shrink-0 mt-2">
+                <img src="{{ asset('storage/' . $post->user->biodata->profile_image) }}" alt="twbs" width="35" height="35" class="rounded-circle flex-shrink-0 mt-2">
             </a>
             <div class="d-flex flex-column">
                 <a href="/profile/{{ $post->user->username }}" class="text-decoration-none text-dark">

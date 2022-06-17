@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     
     {{-- My style.css --}}
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/image.css">
 
     {{-- Trix Editor --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">
@@ -65,6 +66,19 @@
     function previewEditImage(){
         const image = document.querySelector('#editImage');
         const imgPreview = document.querySelector('.edit-img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+    function previewEditProfileImage(){
+        const image = document.querySelector('#editProfileImage');
+        const imgPreview = document.querySelector('.edit-profile-img-preview');
 
         imgPreview.style.display = 'block';
 

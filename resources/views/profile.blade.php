@@ -3,6 +3,7 @@
     @include('partials.header')
 @endsection
 @section('main')
+<link rel="stylesheet" href="/css/profile.css">
 <section class="container">
     <div class="row justify-content-center headerProfile mt-0 ">
         <div class="coverImgCon col-md-10 px-0">
@@ -11,7 +12,7 @@
         <div class="col-md-10 border-b shadow-sm bg-white rounded-bottom text-center">
             <div class="row px-0 py-2">
                 <div class="col-md-2">
-                    <img src="https://source.unsplash.com/100x100" alt="twbs" class="rounded-circle flex-shrink-0 mt-1 profileImg img-fluid">
+                    <img src="{{ asset('storage/' . $bio->profile_image) }}" width="100" height="100" alt="twbs" class="rounded-circle flex-shrink-0 profileImg">
                 </div>
                 <div class="col-md-8">
                     <h3 class="">{{ $user->name }}</h6>
@@ -36,8 +37,10 @@
                                 @endif
                             </button>
                         </form>
-                    {{-- @else
-                        <button class="btn btn-primary">Edit Profile</button> --}}
+                    @elseif(Auth::user()->is($user))
+                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        Edit Image
+                    </button>
                     @endif
                 </div>
             </div>
@@ -103,20 +106,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-3 shadow-sm rounded-3 mb-3">
+                <div class="pengikut bg-white p-3 shadow-sm rounded-3 mb-3">
                     <div class="row">
                         <div class="col-12">
                             <h5 class="card-title">Pengikut</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $user->followers->count() }} Pengikut</h6>
                         </div>
                         <div class="col-12">
-                            <div class="row gap-y">
+                            <div class="d-flex justify-content-between flex-wrap">
                                 @if ($user->followers->count())
-                                    @foreach ($user->followers()->limit(6)->get() as $f)
-                                    <div class="col-4 mb-2">
+                                    @foreach ($user->followers()->limit(9)->get() as $f)
+                                    <div class="mb-2" style="width: 92px">
                                         <div class="card border-0">
                                             <a href="/profile/{{ $f->username }}">
-                                                <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
+                                                <img src="{{ asset('storage/' . $f->biodata->profile_image) }}" height="92" width="92" class="card-img-top rounded-3" alt="...">
                                             </a>
                                             <div class="card-body p-0">
                                                 <a href="/profile/{{ $f->username }}" class="text-dark text-decoration-none">
@@ -127,26 +130,26 @@
                                     </div>
                                     @endforeach
                                 @else
-                                    <h6 class="text-center text-black-50">Tidak Mempunyai Pengikut</h6>
+                                    <h6 class="text-center text-black-50 w-100 justify-center">Tidak Mempunyai Pengikut</h6>
                                 @endif
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-3 shadow-sm rounded-3 mb-3">
+                <div class="mengikuti bg-white p-3 shadow-sm rounded-3 mb-3">
                     <div class="row">
                         <div class="col-12">
                             <h5 class="card-title">Mengikuti</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $user->follows->count() }} Diikuti</h6>
                         </div>
                         <div class="col-12">
-                            <div class="row gap-y">
+                            <div class="d-flex justify-content-between flex-wrap">
                                 @if ($user->follows->count())
-                                    @foreach ($user->follows()->limit(6)->get() as $f)
-                                    <div class="col-4 mb-2">
+                                    @foreach ($user->follows()->limit(9)->get() as $f)
+                                    <div class="mb-2" style="width: 92px">
                                         <div class="card border-0">
                                             <a href="/profile/{{ $f->username }}">
-                                                <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
+                                                <img src="{{ asset('storage/' . $f->biodata->profile_image) }}" height="92" width="92" class="rounded-3" alt="...">
                                             </a>
                                             <div class="card-body p-0">
                                                 <a href="/profile/{{ $f->username }}" class="text-dark text-decoration-none">
@@ -157,7 +160,7 @@
                                     </div>
                                     @endforeach
                                 @else
-                                    <h6 class="text-center text-black-50">Tidak Mengikuti Siapapun</h6>
+                                    <h6 class="text-center text-black-50 w-100 justify-center">Tidak Mengikuti Siapapun</h6>
                                 @endif
                             </div>
                         </div>
@@ -169,7 +172,7 @@
                     @if ($user->username == auth()->user()->username)
                         <div class="p-3 bg-white rounded-3 mb-3 shadow-sm d-flex justify-content-between gap-2">
                             <a href="/profile/{{ auth()->user()->username }}">
-                                <img src="https://source.unsplash.com/100x100" alt="twbs" width="35" height="35" class="rounded-circle flex-shrink-0 mt-1">
+                                <img src="{{ asset('storage/' . auth()->user()->biodata->profile_image) }}" alt="twbs" width="35" height="35" class="rounded-circle flex-shrink-0 mt-1">
                             </a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-light w-100 fs-6 text-start rounded-pill text-black-50" data-bs-toggle="modal" data-bs-target="#postModal">
@@ -236,6 +239,53 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Posting</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Image Modal --}}
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ubah Gambar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-12 d-flex">
+                    <a href="/profile/{{ auth()->user()->username }}">
+                        <img src="https://source.unsplash.com/100x100" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1 img-fluid">
+                    </a>
+                    <div class="w-100 justify-content-between mt-1 ms-2">
+                        <div>
+                            <h6 class="mb-0">{{ auth()->user()->name }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-3">
+                    <form action="/profile/image" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="editImage" class="form-label"><br><b>Gambar Profile</b></label>
+                            <input type="hidden" name="oldImage" value="{{ $bio->profile_image }}">
+                            @if ($bio->profile_image)
+                                <img src="{{ asset('storage/' . $bio->profile_image) }}" class="edit-profile-img-preview img-fluid mb-3 d-block">
+                            @else
+                                <img class="edit-profile-img-preview img-fluid mb-3">
+                            @endif
+                            <input class="form-control form-control-sm @error('profile_image') is-invalid @enderror" type="file" id="editProfileImage" name="profile_image" onchange="previewEditProfileImage()">
+                            @error('profile_image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Ubah</button>
             </form>
             </div>
         </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Biodata;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -33,6 +34,22 @@ class UserController extends Controller
             'address' => ''
         ]);
         Biodata::where('id', auth()->user()->biodata->id)->update($validateBio);
+        return back();
+    }
+
+    public function updateImage(Request $request){
+        $validatedImage = $request->validate([
+            'profile_image' => 'image|file|max:1024',
+        ]);
+
+        if($request->file('profile_image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+            $validatedImage['profile_image'] = $request->file('profile_image')->store('profile-images');
+        }
+    
+        Biodata::where('user_id', auth()->user()->id)->update($validatedImage);
         return back();
     }
 }

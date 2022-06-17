@@ -26,6 +26,7 @@ Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('/profile/{user:username}', [UserController::class, 'index'])->middleware('auth');
 Route::post('/profile/bio', [UserController::class, 'updateBio'])->middleware('auth');
+Route::post('/profile/image', [UserController::class, 'updateImage'])->middleware('auth');
 
 Route::get('/search', [UserController::class, 'search'])->middleware('auth');
 
