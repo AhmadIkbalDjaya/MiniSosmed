@@ -29,8 +29,8 @@
     <main class="mt-5 row justify-content-center">
         <div class="col-md-10 row align-items-md-stretch justify-content-md-center px-0">
             <aside class="col-lg-5 sidebar mb-5">
-                <div class="bg-white p-3 shadow-sm rounded-3">
-                    <h4>Biodata</h4>
+                <div class="bg-white p-3 shadow-sm rounded-3 mb-3">
+                    <h5 class="card-title">Biodata</h5>
                     <div class="list-group">
                         <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0 px-lg-0 m-0">
                             <div class="d-flex gap-1 w-100 justify-content-between">
@@ -81,6 +81,50 @@
                                     </button>
                                     @endif
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-3 shadow-sm rounded-3 mb-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="card-title">Pengikut</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">123 Pengikut</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="row gap-y">
+                                @for ($i = 0; $i < 6; $i++)
+                                <div class="col-4 mb-2">
+                                    <div class="card border-0">
+                                        <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
+                                        <div class="card-body p-0">
+                                            <p class="fs-6 mb-0 fw-bolder">Mark Zuckerberg</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endfor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-3 shadow-sm rounded-3 mb-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="card-title">Mengikuti</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">123 Mengikuti</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="row gap-y">
+                                @for ($i = 0; $i < 6; $i++)
+                                <div class="col-4 mb-2">
+                                    <div class="card border-0">
+                                        <img src="https://source.unsplash.com/100x100" class="card-img-top rounded-3" alt="...">
+                                        <div class="card-body p-0">
+                                            <p class="fs-6 mb-0 fw-bolder">Mark Zuckerberg</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endfor
                             </div>
                         </div>
                     </div>
