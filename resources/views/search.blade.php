@@ -9,18 +9,30 @@
             @foreach ($users as $user)
                 <main class="col-md-8 row bg-white p-3 rounded-3 shadow mb-3 justify-content-center">
                     <div class="col-md-12 d-flex gap-3">
-                        <div>
-                            <img src="https://source.unsplash.com/60x60" alt="" class="rounded-circle img-fluid" width="60" height="60">
-                        </div>
+                        <a href="/profile/{{ $user->username }}">
+                            <img src="{{ asset('storage/' . $user->biodata->profile_image) }}" alt="" class="rounded-circle" width="60" height="60">
+                        </a>
                         <div class="mt-1">
                             <a href="/profile/{{ $user->username }}" class="text-decoration-none text-dark">
                                 <h5 class="mb-0">{{ $user->name }}</h5>
                             </a>
-                            <small>999 Pengikut</small>
+                            <small>{{ $user->followers()->count() }} Pengikut</small>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
-                        <button class="btn btn-primary w-100">Ikuti</button>
+                        {{-- <button class="btn btn-primary w-100">Ikuti</button> --}}
+                        @if (Auth::user()->isNot($user))
+                        <form action="/follow/{{ $user->username }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-primary w-100">
+                                @if (Auth::user()->follows()->where('following_user_id', $user->id)->first())
+                                    Unfollow
+                                @else
+                                    Follow
+                                @endif
+                            </button>
+                        </form>
+                        @endif
                     </div>
                 </main>
             @endforeach

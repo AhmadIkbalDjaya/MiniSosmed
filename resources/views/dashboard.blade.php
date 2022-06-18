@@ -26,7 +26,8 @@
             <div class="h-100 bg-transparent rounded-3">
                 <h6 class="text-black-50">Mungkin Anda Mengenal</h6>
                 <div class="list-group">
-                    @foreach ($users as $user)
+                    @foreach ($users->sortDesc()->take(10) as $user)
+                        @if (Auth::user()->isNot($user) && !Auth::user()->follows()->where('following_user_id', $user->id)->first())
                         <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0 px-lg-0 m-0">
                             <a href="/profile/{{ $user->username }}">
                                 <img src="{{ asset('storage/' . $user->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1">
@@ -37,16 +38,24 @@
                                         <h6 class="mb-0">{{ $user->name}}</h6>
                                     </a>
                                 </div>
-                                <a href="Ikuti">
-                                    <button type="button" class="btn btn-primary py-0">Ikuti</button>
-                                </a>
+                                <form action="/follow/{{ $user->username }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary py-0">
+                                        @if (Auth::user()->follows()->where('following_user_id', $user->id)->first())
+                                            Unfollow
+                                        @else
+                                            Follow
+                                        @endif
+                                    </button>
+                                </form>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
         </aside>
     </div>
 </main>
-@include('partials.postModal')
+@include('partials.modals.postModal')
 @endsection
