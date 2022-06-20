@@ -90,5 +90,8 @@ class User extends Authenticatable
     public function hasFollow(User $user){
         return $this->follows()->where('following_user_id', $user->id)->exists();
     }
+    public function hasLike($post_id){
+        return Like::where('post_id', $post_id)->where('user_id', auth()->user()->id)->first();
+    }
 
 }

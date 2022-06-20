@@ -49,6 +49,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/js/trix.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
     function previewPostImage(){
         const image = document.querySelector('#postImage');
@@ -88,6 +89,33 @@
         oFReader.onload = function(oFREvent){
             imgPreview.src = oFREvent.target.result;
         }
+    }
+
+    $(document).ready(function(){
+        readPost();
+        readPostSelf();
+    })
+
+    function readPost(){
+        $.get("{{ url('read') }}", {}, function(data, status){
+            $("#readPost").html(data);
+        });
+    }
+    function readPostSelf(){
+        $.get("{{ url('read/self') }}", {}, function(data, status){
+            $("#readPostSelf").html(data);
+        });
+    }
+
+    function like(id){
+        $.ajax({
+            type: "get",
+            url: "{{ url('like') }}/" + id,
+            success: function(data){
+                readPost();
+                readPostSelf();
+            }
+        })
     }
     </script>
 </body>

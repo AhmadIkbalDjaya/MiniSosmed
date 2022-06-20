@@ -40,6 +40,9 @@ Route::post('/register', [RegisterController::class, 'store']);
 // Route::post('/createPost', [PostController::class, 'storePost'])->middleware('auth');
 Route::resource('/post', PostController::class)->middleware('auth');
 Route::resource('/comment', CommentController::class)->middleware('auth');
-Route::post('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
+Route::get('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
 
 Route::post('/follow/{user:username}', [FollowController::class, 'store'])->middleware('auth');
+
+Route::get('read', [PostController::class, 'readPost']);
+Route::get('read/self', [PostController::class, 'readPostSelf']);

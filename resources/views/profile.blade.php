@@ -181,9 +181,9 @@
                         </div>
                     @endif
                     @if ($posts->count())
-                        @foreach ($posts as $post)
-                            @include('partials.posts')
-                        @endforeach
+                        <div id="readPostSelf">
+                            
+                        </div>
                     @else
                         <h4 class="text-center">No Post Found</h4>
                     @endif

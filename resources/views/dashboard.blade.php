@@ -17,9 +17,9 @@
                         Apa yang anda pikirkan, {{ auth()->user()->name }}?
                     </button>
                 </div>
-                @foreach ($posts as $post)
-                    @include('partials.posts')
-                @endforeach
+                <div id="readPost">
+
+                </div>
             </div>
         </main>
         <aside class="col-md-4" id="sidebar">
