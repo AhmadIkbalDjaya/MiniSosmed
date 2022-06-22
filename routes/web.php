@@ -47,4 +47,4 @@ Route::get('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
 Route::post('/follow/{user:username}', [FollowController::class, 'store'])->middleware('auth');
 
 Route::get('read', [PostController::class, 'readPost']);
-Route::get('read/self', [PostController::class, 'readPostSelf']);
+Route::get('read/self/{user_id}', [PostController::class, 'readPostSelf']);

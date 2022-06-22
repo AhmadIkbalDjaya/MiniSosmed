@@ -125,9 +125,9 @@ class PostController extends Controller
                     ->latest()->get()
         ]);
     }
-    public function readPostSelf(){
+    public function readPostSelf($user_id){
         return view('partials.posts', [
-            "posts" => Post::Where('user_id', Auth::user()->id)->latest()->get()
+            "posts" => Post::Where('user_id', $user_id)->latest()->get()
         ]);
     }
 }

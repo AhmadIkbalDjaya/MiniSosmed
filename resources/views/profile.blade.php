@@ -5,6 +5,7 @@
 @section('main')
 <link rel="stylesheet" href="/css/profile.css">
 <section class="container">
+    <input type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
     <div class="row justify-content-center headerProfile mt-0 ">
         <div class="coverImgCon col-md-10 px-0">
             <img src="https://source.unsplash.com/1200x400" alt="Sampul Mark" class="coverImg rounded-top img-fluid mt-5 pt-2">

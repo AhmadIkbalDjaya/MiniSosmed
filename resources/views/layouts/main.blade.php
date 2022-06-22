@@ -93,7 +93,8 @@
 
     $(document).ready(function(){
         readPost();
-        readPostSelf();
+        let user_id = $('#user_id').val();
+        readPostSelf(user_id);
     })
 
     function readPost(){
@@ -101,19 +102,20 @@
             $("#readPost").html(data);
         });
     }
-    function readPostSelf(){
-        $.get("{{ url('read/self') }}", {}, function(data, status){
+    function readPostSelf(user_id){
+        $.get("/read/self/"+user_id, {}, function(data, status){
             $("#readPostSelf").html(data);
         });
     }
 
+    let user_id = $('#user_id').val();
     function like(id){
         $.ajax({
             type: "get",
             url: "{{ url('like') }}/" + id,
             success: function(data){
                 readPost();
-                readPostSelf();
+                readPostSelf(user_id);
             }
         })
     }
@@ -126,7 +128,7 @@
             data: "body=" + komen,
             success: function(data){
                 readPost();
-                readPostSelf();
+                readPostSelf(user_id);
             }
         });
     }
@@ -137,7 +139,7 @@
             url: "/commentDelete/"+comment_id,
             success: function(data){
                 readPost();
-                readPostSelf();
+                readPostSelf(user_id);
             }
         });
     }
