@@ -21,7 +21,7 @@
                     <form action="/profile/image" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="editImage" class="form-label"><br><b>Gambar Profile</b></label>
+                            <label for="editProfileImage" class="form-label"><br><b>Gambar Profile</b></label>
                             <input type="hidden" name="oldImage" value="{{ $bio->profile_image }}">
                             @if ($bio->profile_image)
                                 <img src="{{ asset('storage/' . $bio->profile_image) }}" class="edit-profile-img-preview img-fluid mb-3 d-block">

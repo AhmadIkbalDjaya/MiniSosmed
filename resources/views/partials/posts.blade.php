@@ -44,7 +44,7 @@
         @endif
         <div class="footerPost mt-0 border-top py-1">
             <div class="lcs d-flex justify-content-between px-4">
-                    <button class="bg-transparent border-0 p-0" type="submit" id="tombolLike" onclick="like({{ $post->id }})">
+                    <button class="bg-transparent border-0 p-0" type="button" id="tombolLike" onclick="like({{ $post->id }})">
                         @if (!Auth::user()->hasLike($post->id))
                             <i class="bi bi-hand-thumbs-up"></i> 
                         @elseif(Auth::user()->hasLike($post->id))
@@ -63,4 +63,5 @@
         {{-- Comment --}}
         @include('partials.comment')
     </div>
+    @include('partials.modals.editPostModal')
 @endforeach

@@ -86,7 +86,7 @@ class PostController extends Controller
     {
         $validatedPost = $request->validate([
             'body' => 'required',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:10240',
         ]);
 
         if($request->file('image')){

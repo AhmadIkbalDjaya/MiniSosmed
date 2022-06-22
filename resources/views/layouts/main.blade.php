@@ -64,9 +64,9 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
-    function previewEditImage(){
-        const image = document.querySelector('#editImage');
-        const imgPreview = document.querySelector('.edit-img-preview');
+    function previewEditImage(idPostEdit){
+        const image = document.querySelector('#editImage'+idPostEdit);
+        const imgPreview = document.querySelector('.edit-img-preview'+idPostEdit);
 
         imgPreview.style.display = 'block';
 

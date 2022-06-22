@@ -30,23 +30,24 @@
                             <label for="editImage" class="form-label"><br><b>Upload Gambar</b></label>
                             <input type="hidden" name="oldImage" value="{{ $post->image }}">
                             @if ($post->image)
-                                <img src="{{ asset('storage/' . $post->image) }}" class="edit-img-preview img-fluid mb-3 d-block">
+                                <img src="{{ asset('storage/' . $post->image) }}" class="edit-img-preview{{ $post->id }} img-fluid mb-3 d-block">
                             @else
                                 <img class="edit-img-preview img-fluid mb-3">
                             @endif
-                            <input class="form-control form-control-sm @error('image') is-invalid @enderror" type="file" id="editImage" name="image" onchange="previewEditImage()">
+                            <input class="editImage form-control form-control-sm @error('image') is-invalid @enderror" type="file" id="editImage{{ $post->id }}" name="image" onchange="previewEditImage({{ $post->id }})">
                             @error('image')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
+                        <button type="submit" class="btn btn-primary w-100">Ubah Postingan</button>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Ubah Postingan</button>
-            </form>
+                
             </div>
         </div>
     </div>

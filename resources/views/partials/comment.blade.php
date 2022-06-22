@@ -46,14 +46,10 @@
     </div>
     @endforeach
     <div class="createComment d-flex justify-content-between gap-2">
-        {{-- <form action="/comment" method="POST" class="d-flex justify-content-between gap-2">
-            @csrf --}}
-            {{-- <input type="hidden" name="post_id" value="{{ $post->id }}"> --}}
-            <a href="/profile/{{ auth()->user()->username }}" class="">
-                <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-            </a>
-            <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." name="body" id="komentar{{ $post->id }}">
-            <button class="btn btn-primary" onclick="commentStore({{ $post->id }})">Komen</button>
-        {{-- </form> --}}
+        <a href="/profile/{{ auth()->user()->username }}" class="">
+            <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+        </a>
+        <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." name="body" id="komentar{{ $post->id }}">
+        <button class="btn btn-primary" type="button" onclick="commentStore({{ $post->id }})">Komen</button>
     </div>
 </div>
