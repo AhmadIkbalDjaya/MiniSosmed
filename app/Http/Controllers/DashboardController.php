@@ -18,7 +18,7 @@ class DashboardController extends Controller
                             ->orWhere('user_id', Auth::user()->id)
                             ->latest()->get(),
             // "users" => User::all()
-            "users" => User::all()->whereNOTIn('id', $following)
+            "users" => User::all()->whereNOTIn('id', $following)->whereNOTIn('id', Auth::user()->id)
             // DB::table("users")->select('*')
             // ->whereNOTIn('id',$following)
             // ->get()

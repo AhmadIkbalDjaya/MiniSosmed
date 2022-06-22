@@ -23,11 +23,11 @@
             </div>
         </main>
         <aside class="col-md-4" id="sidebar">
-            <div class="h-100 bg-transparent rounded-3">
+            <div class="bg-transparent rounded-3 mb-3">
                 <h6 class="text-black-50">Mungkin Anda Mengenal</h6>
                 <div class="list-group">
-                    @foreach ($users->slice(0, 9)  as $user)
-                        @if (Auth::user()->isNot($user))
+                    @foreach ($users->slice(0, 8)  as $user)
+                        {{-- @if (Auth::user()->isNot($user)) --}}
                         <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0 px-lg-0 m-0">
                             <a href="/profile/{{ $user->username }}">
                                 <img src="{{ asset('storage/' . $user->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1">
@@ -50,9 +50,12 @@
                                 </form>
                             </div>
                         </div>
-                        @endif
+                        {{-- @endif --}}
                     @endforeach
                 </div>
+            </div>
+            <div class="about rounded-3 mb-3 d-flex justify-content-between w-100 small">
+                @include('partials.about')
             </div>
         </aside>
     </div>

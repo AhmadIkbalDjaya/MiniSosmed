@@ -167,6 +167,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="about rounded-3 mb-3 d-flex justify-content-between w-100 small">
+                    @include('partials.about')
+                </div>
             </aside>
             <main class="col-lg-7 main">
                 <div class="h-100 p-0 rounded-3">
