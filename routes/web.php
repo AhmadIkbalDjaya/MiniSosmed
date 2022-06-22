@@ -39,7 +39,9 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Route::post('/createPost', [PostController::class, 'storePost'])->middleware('auth');
 Route::resource('/post', PostController::class)->middleware('auth');
-Route::resource('/comment', CommentController::class)->middleware('auth');
+Route::get('/commentStore/{post_id}', [CommentController::class, 'commentStore'])->middleware('auth');
+Route::get('/commentDelete/{comment_id}', [CommentController::class, 'commentDestroy'])->middleware('auth');
+// Route::resource('/comment', CommentController::class)->middleware('auth');
 Route::get('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
 
 Route::post('/follow/{user:username}', [FollowController::class, 'store'])->middleware('auth');

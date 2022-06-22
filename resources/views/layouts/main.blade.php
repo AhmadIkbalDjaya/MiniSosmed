@@ -117,6 +117,30 @@
             }
         })
     }
+
+    function commentStore(post_id){
+        let komen = $("#komentar"+post_id).val();
+        $.ajax({
+            type: "get",
+            url: "/commentStore/"+post_id,
+            data: "body=" + komen,
+            success: function(data){
+                readPost();
+                readPostSelf();
+            }
+        });
+    }
+
+    function commentDelete(comment_id){
+        $.ajax({
+            type: "get",
+            url: "/commentDelete/"+comment_id,
+            success: function(data){
+                readPost();
+                readPostSelf();
+            }
+        });
+    }
     </script>
 </body>
 </html>

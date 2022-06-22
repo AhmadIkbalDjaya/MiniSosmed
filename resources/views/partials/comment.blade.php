@@ -21,17 +21,13 @@
                 ...
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li>
+                {{-- <li>
                     <button class="dropdown-item">
                         Edit
                     </button>
-                </li>
+                </li> --}}
                 <li>
-                    <form action="/comment/{{ $comment->id }}" method="post">
-                        @method('delete')
-                        @csrf
-                        <button class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">Hapus</button>
-                    </form>
+                    <button class="dropdown-item text-danger" onclick="commentDelete({{ $comment->id }})">Hapus</button>
                 </li>
             </ul>
         </div>
@@ -49,14 +45,15 @@
         @endif
     </div>
     @endforeach
-    <div class="createComment">
-        <form action="/comment" method="POST" class="d-flex justify-content-between gap-2">
-            @csrf
-            <input type="hidden" name="post_id" value="{{ $post->id }}">
+    <div class="createComment d-flex justify-content-between gap-2">
+        {{-- <form action="/comment" method="POST" class="d-flex justify-content-between gap-2">
+            @csrf --}}
+            {{-- <input type="hidden" name="post_id" value="{{ $post->id }}"> --}}
             <a href="/profile/{{ auth()->user()->username }}" class="">
                 <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
             </a>
-            <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." name="body">
-        </form>
+            <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." name="body" id="komentar{{ $post->id }}">
+            <button class="btn btn-primary" onclick="commentStore({{ $post->id }})">Komen</button>
+        {{-- </form> --}}
     </div>
 </div>
