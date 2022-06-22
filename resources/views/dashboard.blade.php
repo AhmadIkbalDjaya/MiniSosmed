@@ -26,8 +26,8 @@
             <div class="h-100 bg-transparent rounded-3">
                 <h6 class="text-black-50">Mungkin Anda Mengenal</h6>
                 <div class="list-group">
-                    @foreach ($users->sortDesc()->take(10) as $user)
-                        @if (Auth::user()->isNot($user) && !Auth::user()->follows()->where('following_user_id', $user->id)->first())
+                    @foreach ($users->slice(0, 9)  as $user)
+                        @if (Auth::user()->isNot($user))
                         <div class="list-group-item list-group-item-action d-flex gap-3 py-2 bg-transparent border-0 px-lg-0 m-0">
                             <a href="/profile/{{ $user->username }}">
                                 <img src="{{ asset('storage/' . $user->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1">
