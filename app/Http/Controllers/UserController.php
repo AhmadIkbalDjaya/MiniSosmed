@@ -39,14 +39,21 @@ class UserController extends Controller
 
     public function updateImage(Request $request){
         $validatedImage = $request->validate([
-            'profile_image' => 'image|file|max:1024',
+            'profile_image' => 'image|file|max:10240',
+            'cover_image' => 'image|file|max:10240',
         ]);
 
         if($request->file('profile_image')){
-            if($request->oldImage){
-                Storage::delete($request->oldImage);
+            if($request->oldProfileImage && $request->oldProfileImage !== 'profile-images/defaultProfile.png'){
+                Storage::delete($request->oldProfileImage);
             }
             $validatedImage['profile_image'] = $request->file('profile_image')->store('profile-images');
+        }
+        if($request->file('cover_image')){
+            if($request->oldCoverImage && $request->oldCoverImage !== 'cover-images/defaultCover.jpg'){
+                Storage::delete($request->oldCoverImage);
+            }
+            $validatedImage['cover_image'] = $request->file('cover_image')->store('cover-images');
         }
     
         Biodata::where('user_id', auth()->user()->id)->update($validatedImage);

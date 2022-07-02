@@ -94,6 +94,19 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
+    function previewEditCoverImage(){
+        const image = document.querySelector('#editCoverImage');
+        const imgPreview = document.querySelector('.edit-cover-img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
 
     $(document).ready(function(){
         readPost();
