@@ -5,8 +5,9 @@
 @section('main')
 <section class="container">
     <input type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
-    <div class="row justify-content-center headerProfile mt-0 ">
-        <div class="col-md-10 px-0 mt-5 pt-2">
+    <div class="headerProfile row justify-content-center mt-0 ">
+        @include('profile.headerProfile')
+        {{-- <div class="col-md-10 px-0 mt-5 pt-2">
             <div class="coverImgCon">
                 <img src="{{ asset('storage/' . $bio->cover_image) }}" id="coverImage" alt="Sampul Mark" class="coverImg w-100">
             </div>
@@ -46,10 +47,10 @@
                     @endif
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
-    <main class="mt-5 row justify-content-center">
+    <main class="sidebarProfile mt-5 row justify-content-center">
         <div class="col-md-10 row align-items-md-stretch justify-content-md-center px-0">
             <aside class="col-lg-5 sidebar mb-5">
                 <div class="bg-white p-3 shadow-sm rounded-3 mb-3">

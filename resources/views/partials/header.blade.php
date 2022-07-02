@@ -14,7 +14,8 @@
                     <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home <i class="bi bi-house-fill"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('profile/' . auth()->user()->username) ? 'active' : '' }}" href="/profile/{{ auth()->user()->username }}">Profile <i class="bi bi-person-fill"></i></a>
+                    <a class="nav-link {{ Request::is('profile/' . auth()->user()->username) ? 'active' : '' }} 
+                        {{ Request::is('profile/followList/' . auth()->user()->username) ? 'active' : '' }}" href="/profile/{{ auth()->user()->username }}">Profile <i class="bi bi-person-fill"></i></a>
                 </li>
                 <li class="nav-item">
                     <form action="/logout" method="post">

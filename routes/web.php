@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('/profile/{user:username}', [UserController::class, 'index'])->middleware('auth');
+Route::get('/profile/followList/{user:username}', [UserController::class, 'followList'])->middleware('auth');
 Route::post('/profile/bio', [UserController::class, 'updateBio'])->middleware('auth');
 Route::post('/profile/image', [UserController::class, 'updateImage'])->middleware('auth');
 

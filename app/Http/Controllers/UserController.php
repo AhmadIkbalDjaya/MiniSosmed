@@ -11,12 +11,20 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     public function index(User $user){
-        return view('profile', [
+        return view('profile.profile', [
             "title" => "Profile $user->name",
             "user" => $user,
             "posts" => $user->post->sortByDesc('created_at'),
             // "posts" => Post::where('user_id', $user->id)->latest()->get(),
             "bio" => $user->biodata,
+        ]);
+    }
+
+    public function followList(User $user){
+        return view('profile.followList', [
+            "title" => "Follow List $user->name",
+            "bio" => $user->biodata,
+            "user" => $user
         ]);
     }
 
@@ -59,4 +67,5 @@ class UserController extends Controller
         Biodata::where('user_id', auth()->user()->id)->update($validatedImage);
         return back();
     }
+
 }
