@@ -8,7 +8,7 @@
     <div class="row justify-content-center headerProfile mt-0 ">
         <div class="col-md-10 px-0 mt-5 pt-2">
             <div class="coverImgCon">
-                <img src="{{ asset('img/cover.png') }}" id="coverImage" alt="Sampul Mark" class="coverImg rounded-top w-100">
+                <img src="{{ asset('img/defaultCover.jpg') }}" id="coverImage" alt="Sampul Mark" class="coverImg w-100">
             </div>
         </div>
         <div class="col-md-10 border-b shadow-sm bg-white rounded-bottom text-center">
