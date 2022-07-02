@@ -3,7 +3,6 @@
     @include('partials.header')
 @endsection
 @section('main')
-<link rel="stylesheet" href="/css/profile.css">
 <section class="container">
     <input type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
     <div class="row justify-content-center headerProfile mt-0 ">

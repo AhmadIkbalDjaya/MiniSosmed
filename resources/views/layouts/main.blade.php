@@ -13,7 +13,11 @@
     
     {{-- My style.css --}}
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/image.css">
+    @if (Request::is('/'))
+    <link rel="stylesheet" href="/css/dashboard.css">
+    @elseif(Request::is('profile/*'))
+    <link rel="stylesheet" href="/css/profile.css">
+    @endif
 
     {{-- Trix Editor --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">

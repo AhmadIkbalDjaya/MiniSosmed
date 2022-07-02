@@ -3,7 +3,6 @@
     @include('partials.header')
 @endsection
 @section('main')
-<link rel="stylesheet" href="/css/dashboard.css">
 <main class="container-lg mt-5 pt-5">
     <div class="row align-items-md-stretch justify-content-md-center">
         <main class="col-lg-7 main">

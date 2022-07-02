@@ -9,7 +9,7 @@
             <div class="modal-body row">
                 <div class="col-12 d-flex">
                     <a href="/profile/{{ auth()->user()->username }}">
-                        <img src="https://source.unsplash.com/100x100" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1 img-fluid">
+                        <img src="{{ asset('storage/'. auth()->user()->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1 img-fluid">
                     </a>
                     <div class="w-100 justify-content-between mt-1 ms-2">
                         <div>

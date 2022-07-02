@@ -2,7 +2,7 @@
     @foreach ($post->comment as $comment)
     <div class="comments d-flex justify-between gap-2 mt-2">
         <a href="" class="">
-            <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <img src="{{ asset('storage/'. $comment->user->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
         </a>
         <small class="">
             <div class="bg-light p-1 rounded-3">
@@ -47,7 +47,7 @@
     @endforeach
     <div class="createComment d-flex justify-content-between gap-2">
         <a href="/profile/{{ auth()->user()->username }}" class="">
-            <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <img src="{{ asset('storage/'. auth()->user()->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
         </a>
         <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." name="body" id="komentar{{ $post->id }}">
         <button class="btn btn-primary" type="button" onclick="commentStore({{ $post->id }})">Komen</button>
