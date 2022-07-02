@@ -6,8 +6,10 @@
 <section class="container">
     <input type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
     <div class="row justify-content-center headerProfile mt-0 ">
-        <div class="coverImgCon col-md-10 px-0">
-            <img src="https://source.unsplash.com/1200x400" alt="Sampul Mark" class="coverImg rounded-top img-fluid mt-5 pt-2">
+        <div class="col-md-10 px-0 mt-5 pt-2">
+            <div class="coverImgCon">
+                <img src="{{ asset('img/cover.png') }}" id="coverImage" alt="Sampul Mark" class="coverImg rounded-top w-100">
+            </div>
         </div>
         <div class="col-md-10 border-b shadow-sm bg-white rounded-bottom text-center">
             <div class="row px-0 py-2">
