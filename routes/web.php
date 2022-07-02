@@ -45,6 +45,8 @@ Route::get('/commentDelete/{comment_id}', [CommentController::class, 'commentDes
 Route::get('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
 
 Route::post('/follow/{user:username}', [FollowController::class, 'store'])->middleware('auth');
+Route::get('/followDashboard/{id}', [FollowController::class, 'followDashboard']);
 
 Route::get('read', [PostController::class, 'readPost']);
 Route::get('read/self/{user_id}', [PostController::class, 'readPostSelf']);
+Route::get('readSaranTeman', [FollowController::class, 'readSaranTeman']);

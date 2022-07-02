@@ -95,6 +95,7 @@
         readPost();
         let user_id = $('#user_id').val();
         readPostSelf(user_id);
+        readSaranteman();
     })
 
     function readPost(){
@@ -107,7 +108,11 @@
             $("#readPostSelf").html(data);
         });
     }
-
+    function readSaranteman(){
+        $.get("{{ url('readSaranTeman') }}", {}, function(data, status){
+            $("#saranTeman").html(data);
+        });
+    }
     let user_id = $('#user_id').val();
     function like(id){
         $.ajax({
@@ -142,6 +147,17 @@
                 readPostSelf(user_id);
             }
         });
+    }
+
+    function followDashboard(id){
+        $.ajax({
+            type: "get",
+            url: "/followDashboard/"+id,
+            success: function(data){
+                readSaranteman();
+                console.log('berhasil')
+            }
+        })
     }
     </script>
 </body>
