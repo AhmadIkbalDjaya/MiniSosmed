@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -51,3 +52,5 @@ Route::get('/followDashboard/{id}', [FollowController::class, 'followDashboard']
 Route::get('read', [PostController::class, 'readPost']);
 Route::get('read/self/{user_id}', [PostController::class, 'readPostSelf']);
 Route::get('readSaranTeman', [FollowController::class, 'readSaranTeman']);
+
+Route::get('/about', [AboutController::class, 'index']);

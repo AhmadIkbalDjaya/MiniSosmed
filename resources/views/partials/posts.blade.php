@@ -20,14 +20,14 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li>
                         <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal{{ $post->id }}">
-                            Edit Postingan
+                            <i class="fa-solid fa-pencil"></i> Edit Postingan
                         </button>
                     </li>
                     <li>
                         <form action="/post/{{ $post->id }}" method="post">
                             @method('delete')
                             @csrf
-                            <button class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">Hapus Postingan</button>
+                            <button class="dropdown-item text-danger" onclick="return confirm('Are you sure?')"><i class="fa-regular fa-trash-can"></i> Hapus Postingan</button>
                         </form>
                     </li>
                 </ul>
@@ -46,17 +46,17 @@
             <div class="lcs d-flex justify-content-between px-4">
                     <button class="bg-transparent border-0 p-0" type="button" id="tombolLike" onclick="like({{ $post->id }})">
                         @if (!Auth::user()->hasLike($post->id))
-                            <i class="bi bi-hand-thumbs-up"></i> 
+                            <i class="fa-regular fa-thumbs-up"></i>
                         @elseif(Auth::user()->hasLike($post->id))
-                            <i class="bi bi-hand-thumbs-up-fill"></i>
+                            <i class="fa-solid fa-thumbs-up"></i>
                         @endif
                         {{ $post->like->count() }}  Like
                     </button>
                 <button class="bg-transparent border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#commentPost{{ $post->id }}" aria-expanded="false" aria-controls="commentPost{{ $post->id }}">
-                    <i class="bi bi-chat-square"></i> {{ $post->comment->count() }} Comment
+                    <i class="fa-regular fa-message"></i> {{ $post->comment->count() }} Comment
                 </button>
                 <button class="bg-transparent border-0 p-0" type="button" title="Belum Tersedia">
-                    <i class="bi bi-arrow-return-right"></i> 0 Share
+                    <i class="fa-solid fa-share"></i></i> 0 Share
                 </button>
             </div>
         </div>

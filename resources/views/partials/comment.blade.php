@@ -27,7 +27,7 @@
                     </button>
                 </li> --}}
                 <li>
-                    <button class="dropdown-item text-danger" onclick="commentDelete({{ $comment->id }})">Hapus</button>
+                    <button class="dropdown-item text-danger" onclick="commentDelete({{ $comment->id }})"><i class="fa-regular fa-trash-can"></i> Hapus</button>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li class="dropdown-item">
-                    Pilihan Belum Tersedia
+                    <i class="fa-solid fa-rectangle-xmark"></i> Pilihan Belum Tersedia
                 </li>
             </ul>
         </div>

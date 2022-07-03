@@ -11,16 +11,16 @@
             </form>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home <i class="bi bi-house-fill"></i></a>
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home <i class="fa-solid fa-house-chimney"></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('profile/' . auth()->user()->username) ? 'active' : '' }} 
-                        {{ Request::is('profile/followList/' . auth()->user()->username) ? 'active' : '' }}" href="/profile/{{ auth()->user()->username }}">Profile <i class="bi bi-person-fill"></i></a>
+                        {{ Request::is('profile/followList/' . auth()->user()->username) ? 'active' : '' }}" href="/profile/{{ auth()->user()->username }}">Profile <i class="fa-solid fa-user"></i></a>
                 </li>
                 <li class="nav-item">
                     <form action="/logout" method="post">
                         @csrf
-                        <button type="submit" class="nav-link bg-transparent border-0">Logout <i class="bi bi-box-arrow-right"></i></button>
+                        <button type="submit" class="nav-link bg-transparent border-0">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
                     </form>
                 </li>
             </ul>
