@@ -6,49 +6,22 @@
     <link href="{{ asset('img/Logo.png') }}" rel="shortcut icon">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    {{-- Icon Bootstrap --}}
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"> --}}
-
     {{-- font awesome icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    {{-- My style.css --}}
+    {{-- css saya --}}
     <link rel="stylesheet" href="/css/style.css">
     @if (Request::is('/'))
     <link rel="stylesheet" href="/css/dashboard.css">
     @elseif(Request::is('profile/*'))
     <link rel="stylesheet" href="/css/profile.css">
     @endif
-
     {{-- Trix Editor --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">
-    {{-- <style>
-        trix-toolbar [data-trix-button-group="file-tools"]{
-            display: none !important;
-        }
-        trix-toolbar [title="Decrease Level"],
-        trix-toolbar [title="Increase Level"]{
-            display: none !important;
-        }
-        @media only screen and (min-width: 1024px){
-            .trix-button-group--block-tools{
-                margin-left: 0 !important;
-            }
-            .trix-button-group--history-tools{
-                margin-left: 0 !important;
-            }
-        }
-        .bg-light{
-            background-color: #F0F2F5 !important;
-        }
-    </style> --}}
     
     <title>{{ $title }}</title>
 </head>
 <body class="bg-light">
-    
-    {{-- @include('partials.header') --}}
+
     @yield('header')
 
     @yield('main')

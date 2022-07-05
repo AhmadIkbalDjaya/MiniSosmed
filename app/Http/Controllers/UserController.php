@@ -15,7 +15,6 @@ class UserController extends Controller
             "title" => "Profile $user->name",
             "user" => $user,
             "posts" => $user->post->sortByDesc('created_at'),
-            // "posts" => Post::where('user_id', $user->id)->latest()->get(),
             "bio" => $user->biodata,
         ]);
     }
