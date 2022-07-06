@@ -33,7 +33,8 @@ trix-toolbar [data-trix-button-group="file-tools"]{
     display: none !important;
 }
 trix-toolbar [title="Decrease Level"],
-trix-toolbar [title="Increase Level"]{
+trix-toolbar [title="Increase Level"],
+trix-toolbar [title="Quote"]{
     display: none !important;
 }
 @media only screen and (min-width: 1024px){

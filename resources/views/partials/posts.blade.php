@@ -43,7 +43,7 @@
             </div>
         @endif
         <div class="footerPost mt-0 border-top py-1">
-            <div class="lcs d-flex justify-content-between px-4">
+            <div class="lcs d-flex justify-content-around px-4">
                     <button class="bg-transparent border-0 p-0" type="button" id="tombolLike" onclick="like({{ $post->id }})">
                         @if (!Auth::user()->hasLike($post->id))
                             <i class="fa-regular fa-thumbs-up"></i>
@@ -54,9 +54,6 @@
                     </button>
                 <button class="bg-transparent border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#commentPost{{ $post->id }}" aria-expanded="false" aria-controls="commentPost{{ $post->id }}">
                     <i class="fa-regular fa-message"></i> {{ $post->comment->count() }} Comment
-                </button>
-                <button class="bg-transparent border-0 p-0" type="button" title="Belum Tersedia">
-                    <i class="fa-solid fa-share"></i></i> 0 Share
                 </button>
             </div>
         </div>
