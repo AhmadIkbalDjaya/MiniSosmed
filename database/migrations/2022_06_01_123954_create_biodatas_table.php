@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('profile_image')->nullable()->default('profile-images/defaultProfile.png');
-            $table->string('cover_image')->nullable();
+            $table->string('cover_image')->nullable()->default('cover-images/defaultCover.jpg');
             $table->enum('genre', ['Laki-Laki', 'Perempuan'])->nullable();
             $table->date('birthday')->nullable();
             $table->text('address')->nullable();

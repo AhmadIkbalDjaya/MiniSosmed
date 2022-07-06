@@ -13,13 +13,11 @@ class LikeController extends Controller
 
         if ($like) {
             $like->delete();
-            return back();
         } else {
             Like::create([
                 'post_id' => $post_id,
                 'user_id' => auth()->user()->id
             ]);
-            return back();
         }
     }
 }

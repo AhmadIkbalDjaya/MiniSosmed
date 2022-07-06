@@ -11,12 +11,19 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     public function index(User $user){
-        return view('profile', [
+        return view('profile.profile', [
             "title" => "Profile $user->name",
             "user" => $user,
             "posts" => $user->post->sortByDesc('created_at'),
-            // "posts" => Post::where('user_id', $user->id)->latest()->get(),
-            "bio" => $user->biodata
+            "bio" => $user->biodata,
+        ]);
+    }
+
+    public function followList(User $user){
+        return view('profile.followList', [
+            "title" => "Follow List $user->name",
+            "bio" => $user->biodata,
+            "user" => $user
         ]);
     }
 
@@ -39,17 +46,25 @@ class UserController extends Controller
 
     public function updateImage(Request $request){
         $validatedImage = $request->validate([
-            'profile_image' => 'image|file|max:1024',
+            'profile_image' => 'image|file|max:10240',
+            'cover_image' => 'image|file|max:10240',
         ]);
 
         if($request->file('profile_image')){
-            if($request->oldImage){
-                Storage::delete($request->oldImage);
+            if($request->oldProfileImage && $request->oldProfileImage !== 'profile-images/defaultProfile.png'){
+                Storage::delete($request->oldProfileImage);
             }
             $validatedImage['profile_image'] = $request->file('profile_image')->store('profile-images');
+        }
+        if($request->file('cover_image')){
+            if($request->oldCoverImage && $request->oldCoverImage !== 'cover-images/defaultCover.jpg'){
+                Storage::delete($request->oldCoverImage);
+            }
+            $validatedImage['cover_image'] = $request->file('cover_image')->store('cover-images');
         }
     
         Biodata::where('user_id', auth()->user()->id)->update($validatedImage);
         return back();
     }
+
 }

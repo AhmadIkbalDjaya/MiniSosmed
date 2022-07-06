@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('/profile/{user:username}', [UserController::class, 'index'])->middleware('auth');
+Route::get('/profile/followList/{user:username}', [UserController::class, 'followList'])->middleware('auth');
 Route::post('/profile/bio', [UserController::class, 'updateBio'])->middleware('auth');
 Route::post('/profile/image', [UserController::class, 'updateImage'])->middleware('auth');
 
@@ -37,9 +39,18 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-// Route::post('/createPost', [PostController::class, 'storePost'])->middleware('auth');
 Route::resource('/post', PostController::class)->middleware('auth');
-Route::resource('/comment', CommentController::class)->middleware('auth');
-Route::post('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
+
+Route::get('/commentStore/{post_id}', [CommentController::class, 'commentStore'])->middleware('auth');
+Route::get('/commentDelete/{comment_id}', [CommentController::class, 'commentDestroy'])->middleware('auth');
+
+Route::get('/like/{id}', [LikeController::class, 'like'])->middleware('auth');
 
 Route::post('/follow/{user:username}', [FollowController::class, 'store'])->middleware('auth');
+Route::get('/followDashboard/{id}', [FollowController::class, 'followDashboard'])->middleware('auth');
+
+Route::get('read', [PostController::class, 'readPost']);
+Route::get('read/self/{user_id}', [PostController::class, 'readPostSelf']);
+Route::get('readSaranTeman', [FollowController::class, 'readSaranTeman']);
+
+Route::get('/about', [AboutController::class, 'index']);

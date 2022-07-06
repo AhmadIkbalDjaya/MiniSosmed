@@ -9,7 +9,7 @@
             <div class="modal-body row">
                 <div class="col-12 d-flex">
                     <a href="/profile/{{ auth()->user()->username }}">
-                        <img src="https://source.unsplash.com/100x100" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1 img-fluid">
+                        <img src="{{ asset('storage/'. auth()->user()->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 mt-1 img-fluid">
                     </a>
                     <div class="w-100 justify-content-between mt-1 ms-2">
                         <div>
@@ -30,23 +30,24 @@
                             <label for="editImage" class="form-label"><br><b>Upload Gambar</b></label>
                             <input type="hidden" name="oldImage" value="{{ $post->image }}">
                             @if ($post->image)
-                                <img src="{{ asset('storage/' . $post->image) }}" class="edit-img-preview img-fluid mb-3 d-block">
+                                <img src="{{ asset('storage/' . $post->image) }}" class="edit-img-preview{{ $post->id }} img-fluid mb-3 d-block">
                             @else
                                 <img class="edit-img-preview img-fluid mb-3">
                             @endif
-                            <input class="form-control form-control-sm @error('image') is-invalid @enderror" type="file" id="editImage" name="image" onchange="previewEditImage()">
+                            <input class="editImage form-control form-control-sm @error('image') is-invalid @enderror" type="file" id="editImage{{ $post->id }}" name="image" onchange="previewEditImage({{ $post->id }})">
                             @error('image')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
+                        <button type="submit" class="btn btn-primary w-100">Ubah Postingan</button>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Ubah Postingan</button>
-            </form>
+                
             </div>
         </div>
     </div>

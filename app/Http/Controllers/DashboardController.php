@@ -13,11 +13,9 @@ class DashboardController extends Controller
         $following = Auth::user()->follows->pluck('id');
         return view('dashboard', [
             "title" => "Minsos",
-            // "posts" => Post::latest()->get(),
             "posts" => Post::whereIn('user_id', $following)
                             ->orWhere('user_id', Auth::user()->id)
-                            ->latest()->get(),
-            "users" => User::all()
+                            ->latest()->get()
         ]);
     }
 }

@@ -4,3 +4,47 @@
         display: none;
     }
 }
+
+/* gambar cover */
+@media screen and (min-width: 0px) and (max-width: 320px) {
+    #coverImage{
+        max-height: 105px;
+        min-height: 105px;
+        height: 105px;
+    }
+}
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    #coverImage{
+        max-height: 125px;
+        min-height: 125px;
+        height: 125px;
+    }
+}
+@media screen and (min-width: 376px) and (max-width: 425px) {
+    #coverImage{
+        max-height: 140px;
+        min-height: 140px;
+        height: 140px;
+    }
+}
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    #coverImage{
+        max-height: 200px;
+        min-height: 200px;
+        height: 200px;
+    }
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    #coverImage{
+        max-height: 265px;
+        min-height: 265px;
+        height: 265px;
+    }
+}
+@media screen and (min-width: 1025px) and (max-width: 2560px) {
+    #coverImage{
+        max-height: 365px;
+        min-height: 365px;
+        height: 365px;
+    }
+}

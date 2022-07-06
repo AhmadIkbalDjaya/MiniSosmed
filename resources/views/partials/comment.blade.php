@@ -2,7 +2,7 @@
     @foreach ($post->comment as $comment)
     <div class="comments d-flex justify-between gap-2 mt-2">
         <a href="" class="">
-            <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <img src="{{ asset('storage/'. $comment->user->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
         </a>
         <small class="">
             <div class="bg-light p-1 rounded-3">
@@ -21,17 +21,13 @@
                 ...
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li>
+                {{-- <li>
                     <button class="dropdown-item">
                         Edit
                     </button>
-                </li>
+                </li> --}}
                 <li>
-                    <form action="/comment/{{ $comment->id }}" method="post">
-                        @method('delete')
-                        @csrf
-                        <button class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">Hapus</button>
-                    </form>
+                    <button class="dropdown-item text-danger" onclick="commentDelete({{ $comment->id }})"><i class="fa-regular fa-trash-can"></i> Hapus</button>
                 </li>
             </ul>
         </div>
@@ -42,21 +38,18 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li class="dropdown-item">
-                    Pilihan Belum Tersedia
+                    <i class="fa-solid fa-rectangle-xmark"></i> Pilihan Belum Tersedia
                 </li>
             </ul>
         </div>
         @endif
     </div>
     @endforeach
-    <div class="createComment">
-        <form action="/comment" method="POST" class="d-flex justify-content-between gap-2">
-            @csrf
-            <input type="hidden" name="post_id" value="{{ $post->id }}">
-            <a href="/profile/{{ auth()->user()->username }}" class="">
-                <img src="https://source.unsplash.com/32x32" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-            </a>
-            <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." name="body">
-        </form>
+    <div class="createComment d-flex justify-content-between gap-2">
+        <a href="/profile/{{ auth()->user()->username }}" class="">
+            <img src="{{ asset('storage/'. auth()->user()->biodata->profile_image) }}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+        </a>
+        <input class="form-control form-control-sm rounded-pill" type="text" placeholder="Tulis Komenter ..." name="body" id="komentar{{ $post->id }}">
+        <button class="btn btn-primary" type="button" onclick="commentStore({{ $post->id }})">Komen</button>
     </div>
 </div>

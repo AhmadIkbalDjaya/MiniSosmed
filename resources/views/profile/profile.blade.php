@@ -3,11 +3,14 @@
     @include('partials.header')
 @endsection
 @section('main')
-<link rel="stylesheet" href="/css/profile.css">
 <section class="container">
-    <div class="row justify-content-center headerProfile mt-0 ">
-        <div class="coverImgCon col-md-10 px-0">
-            <img src="https://source.unsplash.com/1200x400" alt="Sampul Mark" class="coverImg rounded-top img-fluid mt-5 pt-2">
+    <input type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
+    <div class="headerProfile row justify-content-center mt-0 ">
+        @include('profile.headerProfile')
+        {{-- <div class="col-md-10 px-0 mt-5 pt-2">
+            <div class="coverImgCon">
+                <img src="{{ asset('storage/' . $bio->cover_image) }}" id="coverImage" alt="Sampul Mark" class="coverImg w-100">
+            </div>
         </div>
         <div class="col-md-10 border-b shadow-sm bg-white rounded-bottom text-center">
             <div class="row px-0 py-2">
@@ -44,10 +47,10 @@
                     @endif
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
-    <main class="mt-5 row justify-content-center">
+    <main class="sidebarProfile mt-5 row justify-content-center">
         <div class="col-md-10 row align-items-md-stretch justify-content-md-center px-0">
             <aside class="col-lg-5 sidebar mb-5">
                 <div class="bg-white p-3 shadow-sm rounded-3 mb-3">
@@ -166,6 +169,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="about rounded-3 mb-3 d-flex justify-content-between w-100 small">
+                    @include('partials.about')
+                </div>
             </aside>
             <main class="col-lg-7 main">
                 <div class="h-100 p-0 rounded-3">
@@ -181,9 +187,9 @@
                         </div>
                     @endif
                     @if ($posts->count())
-                        @foreach ($posts as $post)
-                            @include('partials.posts')
-                        @endforeach
+                        <div id="readPostSelf">
+                            
+                        </div>
                     @else
                         <h4 class="text-center">No Post Found</h4>
                     @endif

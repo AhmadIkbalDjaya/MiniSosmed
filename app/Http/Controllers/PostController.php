@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -85,7 +86,7 @@ class PostController extends Controller
     {
         $validatedPost = $request->validate([
             'body' => 'required',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:10240',
         ]);
 
         if($request->file('image')){
@@ -114,5 +115,19 @@ class PostController extends Controller
         Post::destroy($post->id);
 
         return back();
+    }
+
+    public function readPost(){
+        $following = Auth::user()->follows->pluck('id');
+        return view('partials.posts', [
+            "posts" => Post::whereIn('user_id', $following)
+                    ->orWhere('user_id', Auth::user()->id)
+                    ->latest()->get()
+        ]);
+    }
+    public function readPostSelf($user_id){
+        return view('partials.posts', [
+            "posts" => Post::Where('user_id', $user_id)->latest()->get()
+        ]);
     }
 }

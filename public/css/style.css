@@ -1,4 +1,7 @@
-    
+.bg-light{
+    background-color: #F0F2F5 !important;
+}
+
 .form-signin .form-floating:focus-within {
     z-index: 2;
 }
@@ -18,4 +21,27 @@
 .form-registration input{
     border-radius: 0;
     margin-bottom: -1px;
+}
+
+/* hover effect */
+.hoverEffect:hover{
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* trix editor */
+trix-toolbar [data-trix-button-group="file-tools"]{
+    display: none !important;
+}
+trix-toolbar [title="Decrease Level"],
+trix-toolbar [title="Increase Level"],
+trix-toolbar [title="Quote"]{
+    display: none !important;
+}
+@media only screen and (min-width: 1024px){
+    .trix-button-group--block-tools{
+        margin-left: 0 !important;
+    }
+    .trix-button-group--history-tools{
+        margin-left: 0 !important;
+    }
 }
