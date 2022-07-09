@@ -10,16 +10,13 @@
                     <h6 class="mb-0">{{ $user->name}}</h6>
                 </a>
             </div>
-            {{-- <form action="/follow/{{ $user->username }}" method="post">
-                @csrf --}}
-                <button type="button" class="btn btn-primary py-0" onclick="followDashboard({{ $user->id }})">
-                    @if (Auth::user()->follows()->where('following_user_id', $user->id)->first())
-                        Unfollow
-                    @else
-                        Follow
-                    @endif
-                </button>
-            {{-- </form> --}}
+            <button type="button" class="btn btn-primary py-0" onclick="followDashboard({{ $user->id }})">
+                @if (Auth::user()->follows()->where('following_user_id', $user->id)->first())
+                    Unfollow
+                @else
+                    Follow
+                @endif
+            </button>
         </div>
     </div>
 @endforeach
