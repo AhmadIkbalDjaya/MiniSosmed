@@ -2,11 +2,37 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json([
+                "responseCode" => 401,
+                "responseStatus" => "Unauthorized",
+                "responseMassage" => "Unauthenticated",
+                'errors' => 'Unauthenticated'
+            ], 401);
+        } else {
+            return redirect()->guest(route('login'));
+        }
+    }
+
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        return response()->json([
+            "responseCode" => 422,
+            "responseStatus" => "Unprocessable Entity",
+            "responseMassage" => "The given data was invalid.",
+            'errors' => $exception->errors(),
+        ], $exception->status);
+    }
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -45,6 +71,16 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (NotFoundHttpException $e, $request){
+            if ($request->wantsJson()) {
+                return response()->json([
+                    "responseCode" => 404,
+                    "responseStatus" => "Not Found",
+                    "responseMassage" => "Not Found",
+                ]);   
+            } 
         });
     }
 }
