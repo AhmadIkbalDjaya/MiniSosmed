@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\API\ApiAuthenticationController;
-use App\Http\Controllers\API\ApiCommentPostController;
-use App\Http\Controllers\API\ApiDashboardController;
-use App\Http\Controllers\API\ApiFollowController;
-use App\Http\Controllers\API\ApiPostController;
-use App\Http\Controllers\API\ApiProfileController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\API\ApiPostController;
+use App\Http\Controllers\API\ApiFollowController;
+use App\Http\Controllers\API\ApiProfileController;
+use App\Http\Controllers\API\ApiDashboardController;
+use App\Http\Controllers\API\ApiCommentPostController;
+use App\Http\Controllers\API\ApiAuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,10 @@ Route::controller(ApiAuthenticationController::class)->group(function () {
     Route::post('login', 'login');
     Route::get('logout', 'logout')->middleware(['auth:sanctum']);
     Route::post('register', 'register');
+});
+
+Route::get('tes', function () {
+    return response()->base_response(User::all());
 });
 
 Route::get('dashboard', [ApiDashboardController::class, 'index'])->middleware(['auth:sanctum']);

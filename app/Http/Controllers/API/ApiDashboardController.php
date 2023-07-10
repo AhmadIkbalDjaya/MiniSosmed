@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Auth;
 
 class ApiDashboardController extends Controller
@@ -15,6 +16,6 @@ class ApiDashboardController extends Controller
         $posts = Post::whereIn('user_id', $following)
                 ->orWhere('user_id', Auth::user()->id)
                 ->latest()->get();
-        return response()->base_response($posts);
+        return response()->base_response(PostResource::collection($posts));
     }
 }
