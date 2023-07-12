@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class PostResource extends JsonResource
 {
@@ -28,7 +29,7 @@ class PostResource extends JsonResource
                 "user_id" => $comment->user_id,
                 "post_id" => $comment->post_id,
                 "body" => $comment->body,
-                "created_at" => $comment->created_at,
+                "created_at" => Date::parse($this->created_at)->format('j F Y'),
                 "name" => $comment->user->name,
             ];
         });
@@ -36,11 +37,12 @@ class PostResource extends JsonResource
             "id" => $this->id,
             "user_id" => $this->user_id,
             "body" => $this->body,
-            "image" => $this->image,
-            "updated_at" => $this->updated_at,
+            "image" => $this->image != null ? url("storage/$this->image") : null,
+            "updated_at" => Date::parse($this->updated_at)->format('j F Y'),
             "name" => $this->user->name,
             "like_count" => $this->like->count(),
             "hasLike" => $hasLike,
+            "comment_count" => $this->comment->count(),
             "comment" => $comments,
         ];
     }

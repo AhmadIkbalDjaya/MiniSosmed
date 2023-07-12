@@ -42,8 +42,9 @@ Route::get('tes', function () {
 Route::get('dashboard', [ApiDashboardController::class, 'index'])->middleware(['auth:sanctum']);
 
 Route::get('profile/{user:username}', [ApiProfileController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('profile/posts/{user:username}', [ApiProfileController::class, 'posts'])->middleware(['auth:sanctum']);
 
-Route::get('search', [ApiProfileController::class, 'search']);
+Route::get('search', [ApiProfileController::class, 'search'])->middleware(['auth:sanctum']);
 
 Route::post('follow/{user:username}', [ApiFollowController::class, 'follow'])->middleware(['auth:sanctum']);
 
