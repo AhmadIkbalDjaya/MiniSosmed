@@ -45,6 +45,9 @@ Route::get('profile/{user:username}', [ApiProfileController::class, 'index'])->m
 Route::get('profile/posts/{user:username}', [ApiProfileController::class, 'posts'])->middleware(['auth:sanctum']);
 Route::post('profile/updateBio', [ApiProfileController::class, 'updateBio'])->middleware(['auth:sanctum']);
 
+Route::get('user/followers/{user:username}', [ApiProfileController::class, 'userFollowers'])->middleware(['auth:sanctum']);
+Route::get('user/following/{user:username}', [ApiProfileController::class, 'userFollowing'])->middleware(['auth:sanctum']);
+
 Route::get('search', [ApiProfileController::class, 'search'])->middleware(['auth:sanctum']);
 
 Route::post('follow/{user:username}', [ApiFollowController::class, 'follow'])->middleware(['auth:sanctum']);

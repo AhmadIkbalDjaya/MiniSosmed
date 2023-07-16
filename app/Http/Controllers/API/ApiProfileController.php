@@ -41,4 +41,16 @@ class ApiProfileController extends Controller
         Biodata::where("id", auth()->user()->biodata->id)->update($validated);
         return response()->base_response();
     }
+
+    public function  userFollowers(User $user)
+    {
+        $data = $user->followers()->get();
+        return response()->base_response(UserResource::collection($data));
+    }
+
+    public function  userFollowing(User $user)
+    {
+        $data = $user->follows()->get();
+        return response()->base_response(UserResource::collection($data));
+    }
 }
