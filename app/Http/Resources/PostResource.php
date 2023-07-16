@@ -36,6 +36,7 @@ class PostResource extends JsonResource
         return [
             "id" => $this->id,
             "user_id" => $this->user_id,
+            "username" => $this->user->username,
             "body" => $this->body,
             "image" => $this->image != null ? url("storage/$this->image") : null,
             "updated_at" => Date::parse($this->updated_at)->format('j F Y'),

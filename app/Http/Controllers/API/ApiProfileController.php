@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\ProfileUserResource;
 use App\Http\Resources\UserResource;
+use App\Models\Biodata;
 use Clockwork\Support\Symfony\ProfileTransformer;
 
 class ApiProfileController extends Controller
@@ -20,14 +21,24 @@ class ApiProfileController extends Controller
 
     public function posts(User $user)
     {
-        // dd($user->id);
         $posts = Post::where('user_id', $user->id)->latest()->get();
-        // dd($posts);
         return response()->base_response(PostResource::collection($posts));
     }
+
     public function search()
     {
         $users = User::search(request('search'))->get();
         return response()->base_response(UserResource::collection($users));
+    }
+
+    public function updateBio(Request $request)
+    {
+        $validated = $request->validate([
+            "birthday" => "nullable|date",
+            "genre" => "nullable|in:Laki-Laki,Perempuan",
+            "address" => 'nullable',
+        ]);
+        Biodata::where("id", auth()->user()->biodata->id)->update($validated);
+        return response()->base_response();
     }
 }
