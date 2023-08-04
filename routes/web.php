@@ -22,15 +22,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
-
-Route::get('/profile/{user:username}', [UserController::class, 'index'])->middleware('auth');
-Route::get('/profile/followList/{user:username}', [UserController::class, 'followList'])->middleware('auth');
-Route::post('/profile/bio', [UserController::class, 'updateBio'])->middleware('auth');
-Route::post('/profile/image', [UserController::class, 'updateImage'])->middleware('auth');
-
-Route::get('/search', [UserController::class, 'search'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+  Route::get('/', [DashboardController::class, 'index']);
+  
+  Route::get('/profile/{user:username}', [UserController::class, 'index']);
+  Route::get('/profile/followList/{user:username}', [UserController::class, 'followList']);
+  Route::post('/profile/bio', [UserController::class, 'updateBio']);
+  Route::post('/profile/image', [UserController::class, 'updateImage']);
+  
+  Route::get('/search', [UserController::class, 'search']);
+});
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
