@@ -64,7 +64,7 @@
                 <hr>
                 <div class="copyDanGit d-flex justify-content-between">
                     <span class="copyright small">
-                        &copy; Ahmad Ikbal Djaya 2022
+                        &copy; 2022 <span class="fw-bold">djaya_ikbal</span>
                     </span>
                     <div class="contact">
                         <a href="https://github.com/AhmadIkbalDjaya/MiniSosmed" target="_blank" class="px-2 text-dark text-decoration-none rounded-2 fs-6">
