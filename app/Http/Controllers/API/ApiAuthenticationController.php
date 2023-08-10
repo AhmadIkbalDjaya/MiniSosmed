@@ -24,12 +24,12 @@ class ApiAuthenticationController extends Controller
             return response()->base_response('', 401, "Unauthorized", "Incorrect email or password");
         }
         $data = [
-            'access_toke' => $user->createToken('login_token')->plainTextToken,
-            'user_id' => $user->id,
-            'name' => $user->name,
-            'username' => $user->username,
-            'email' => $user->email,
-            'profile_image' => $user->biodata->profile_image,
+            'token' => $user->createToken('login_token')->plainTextToken,
+            // 'user_id' => $user->id,
+            // 'name' => $user->name,
+            // 'username' => $user->username,
+            // 'email' => $user->email,
+            // 'profile_image' => $user->biodata->profile_image,
         ];
         return response()->base_response($data, 200, "OK", "Login Success");
     }
@@ -56,5 +56,11 @@ class ApiAuthenticationController extends Controller
         ];
         Biodata::create($biodata);
         return response()->base_response('', 200, "OK", "Registrasion Success");
+    }
+
+    public function  authUser() {
+        return response()->base_response([
+            "user" => auth()->user(),
+        ]);
     }
 }
