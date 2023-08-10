@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Biodata;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -40,7 +41,8 @@ class ApiAuthenticationController extends Controller
         return response()->base_response('', 200, "OK", "Logout Success");
     }
 
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $validated = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
@@ -58,9 +60,11 @@ class ApiAuthenticationController extends Controller
         return response()->base_response('', 200, "OK", "Registrasion Success");
     }
 
-    public function  authUser() {
+    public function  authUser()
+    {
         return response()->base_response([
-            "user" => auth()->user(),
+            // "user" => auth()->user(),
+            "user" => new UserResource(auth()->user()),
         ]);
     }
 }
