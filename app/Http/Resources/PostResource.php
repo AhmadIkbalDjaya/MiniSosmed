@@ -44,7 +44,7 @@ class PostResource extends JsonResource
             "like_count" => $this->like->count(),
             "hasLike" => $hasLike,
             "comment_count" => $this->comment->count(),
-            "comment" => $comments,
+            "comments" => $comments,
         ];
     }
 }
