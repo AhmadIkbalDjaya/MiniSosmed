@@ -25,7 +25,7 @@ class UserResource extends JsonResource
             "id" => $this->id,
             "username" => $this->username,
             "name" => $this->name,
-            "profile_image" => $this->biodata->profile_image,
+            "profile_image" => url("storage/" . $this->biodata->profile_image),
             "followers" => $this->followers->count(),
             "follows" => $this->follows->count(),
             "has_follow" => $has_follow,
