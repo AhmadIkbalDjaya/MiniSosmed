@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // loginRegis
 Route::controller(ApiAuthenticationController::class)->group(function () {
     Route::post('login', 'login');
+    Route::get('authUser', 'authUser')->middleware(["auth:sanctum"]);
     Route::get('logout', 'logout')->middleware(['auth:sanctum']);
     Route::post('register', 'register');
 });
