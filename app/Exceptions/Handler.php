@@ -79,8 +79,8 @@ class Handler extends ExceptionHandler
                     "responseCode" => 404,
                     "responseStatus" => "Not Found",
                     "responseMassage" => "Not Found",
-                ]);   
-            } 
+                ], 404);
+            }
         });
     }
 }

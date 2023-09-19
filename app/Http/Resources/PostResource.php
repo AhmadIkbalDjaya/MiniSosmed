@@ -27,6 +27,7 @@ class PostResource extends JsonResource
             return [
                 "id" => $comment->id,
                 "user_id" => $comment->user_id,
+                "username" => $comment->user->username,
                 "post_id" => $comment->post_id,
                 "body" => $comment->body,
                 "created_at" => Date::parse($this->created_at)->format('j F Y'),
