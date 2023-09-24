@@ -59,5 +59,8 @@ Route::delete('post/{post}', [ApiPostController::class, 'destroy'])->middleware(
 
 Route::get('like/{id}', [ApiPostController::class, 'like'])->middleware(['auth:sanctum']);
 
-Route::post('comment/{post_id}', [ApiCommentPostController::class, 'store'])->middleware(['auth:sanctum']);
-Route::delete('comment/{comment}', [ApiCommentPostController::class, 'destroy'])->middleware(['auth:sanctum']);
+Route::controller(ApiCommentPostController::class)->group(function () {
+    Route::get('/comment/{post}', 'postComment')->middleware(['auth:sanctum']);
+    Route::post('/comment/{post_id}', 'store')->middleware(['auth:sanctum']);
+    Route::delete('comment/{comment}', 'destroy')->middleware(['auth:sanctum']);
+});

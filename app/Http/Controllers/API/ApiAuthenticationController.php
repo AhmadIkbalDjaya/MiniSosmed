@@ -16,7 +16,8 @@ class ApiAuthenticationController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email:dns',
+            // 'email' => 'required|email:dns',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
         $user = User::where('email', $request->email)->first();
@@ -26,11 +27,11 @@ class ApiAuthenticationController extends Controller
         }
         $data = [
             'token' => $user->createToken('login_token')->plainTextToken,
-            // 'user_id' => $user->id,
-            // 'name' => $user->name,
-            // 'username' => $user->username,
-            // 'email' => $user->email,
-            // 'profile_image' => $user->biodata->profile_image,
+            'user_id' => $user->id,
+            'name' => $user->name,
+            'username' => $user->username,
+            'email' => $user->email,
+            'profil_image' => $user->biodata->profile_image,
         ];
         return response()->base_response($data, 200, "OK", "Login Success");
     }
