@@ -17,12 +17,7 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        $hasLike = 0;
-        foreach ($this->like as $key => $like) {
-            if ($like->user_id == Auth::user()->id) {
-                $hasLike = 1;
-            }
-        }
+        $hasLike = Auth::user()->hasLike($this->id) ? 1 : 0;
         return [
             "id" => $this->id,
             "user_id" => $this->user_id,
@@ -31,9 +26,9 @@ class PostResource extends JsonResource
             "image" => $this->image != null ? url("storage/$this->image") : null,
             "updated_at" => $this->updated_at->diffForHumans(),
             "name" => $this->user->name,
-            "like_count" => $this->like->count(),
+            "like_count" => $this->likes->count(),
             "hasLike" => $hasLike,
-            "comment_count" => $this->comment->count(),
+            "comment_count" => $this->comments->count(),
         ];
     }
 }

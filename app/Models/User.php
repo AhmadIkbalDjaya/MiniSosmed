@@ -19,12 +19,6 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // protected $fillable = [
-    //     'username',
-    //     'name',
-    //     'email',
-    //     'password',
-    // ];
 
     protected $guarded = ['id'];
 
@@ -71,7 +65,7 @@ class User extends Authenticatable
     public function comment(){
         return $this->hasMany(Comment::class);
     }
-    public function like(){
+    public function likes(){
         return $this->hasMany(Like::class);
     }
     // reslasi dgan tabel follows
