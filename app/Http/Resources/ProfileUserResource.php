@@ -16,6 +16,8 @@ class ProfileUserResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = User::find($this->id);
+        $has_follow = Auth::user()->hasFollow($user) ? true : false;
         return [
             "id" => $this->id,
             "username" => $this->username,
@@ -27,6 +29,7 @@ class ProfileUserResource extends JsonResource
             "birthday" => $this->biodata->birthday,
             "gender" => $this->biodata->genre,
             "address" => $this->biodata->address,
+            "has_follow" => $has_follow,
         ];
     }
 }

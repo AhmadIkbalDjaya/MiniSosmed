@@ -16,11 +16,8 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        $has_follow = false;
-        $user = User::find(Auth::user()->id);
-        if ($user->follows()->where('following_user_id', $this->id)->first()) {
-            $has_follow = true;
-        }
+        $user = User::find($this->id);
+        $has_follow = Auth::user()->hasFollow($user) ? true : false;
         return [
             "id" => $this->id,
             "username" => $this->username,

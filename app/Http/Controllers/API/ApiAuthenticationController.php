@@ -61,11 +61,4 @@ class ApiAuthenticationController extends Controller
         return response()->base_response('', 200, "OK", "Registrasion Success");
     }
 
-    public function  authUser()
-    {
-        return response()->base_response([
-            // "user" => auth()->user(),
-            "user" => new UserResource(auth()->user()),
-        ]);
-    }
 }
